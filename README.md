@@ -1,10 +1,8 @@
 
 # Synthetic Data Generator for Retail Products Detection  
----
 
 ## Overview
 
----
 
 ## Components 
 
@@ -13,5 +11,7 @@
 
 ## Usage
 
----
+## TODO
+- [] 代碼註解
+- [] 
 
