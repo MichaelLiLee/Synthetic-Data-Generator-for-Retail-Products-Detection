@@ -19,13 +19,13 @@ class OccluderPlacementRandomizer:
 
     Attributes
     ----------
-    num_occluder_in_scene_range (dict): The distribution of occlusion objects within the virtual scene.
+    num_occluder_in_scene_range (dict): The distribution of the number of occlusion objects within the virtual scene.
     __num_occluder_in_scene (int): The number of occlusion objects within the virtual scene.
     occluder_area (list): Spatial distribution area of occlusion objects.
     __occluder_domain_size (numpy.array): Spatial distribution area of occlusion objects.
     occluder_poisson_disk_sampling_radius (float): Occlusion objects separation distance.
     asset_occluder_folder_path (str): The path to occlusion object assets.
-    __occluder_collectio (bpy.data.collections): The Collection data-block of occlusion objects.
+    __occluder_collection (bpy.data.collections): The blender collection data-block of occlusion objects.
     __n_particle (int): Number of generated particles of the poisson disks sampling.
     __particle_coordinates (numpy.array): Coordinates of the poisson disks sampling.
 
@@ -78,11 +78,11 @@ class OccluderPlacementRandomizer:
             filepath (str): The path to background object assets.
 
         References
+        ----------
         https://studio.blender.org/training/scripting-for-artists/5eabe54d521eafd0953f6d45/
         https://docs.blender.org/api/current/bpy.types.BlendDataLibraries.html
         https://blender.stackexchange.com/questions/17876/import-object-without-bpy-ops-wm-link-append/33998#33998 
         https://blender.stackexchange.com/questions/34540/how-to-link-append-a-data-block-using-the-python-api?noredirect=1&lq=1
-
         """
         # Append object from .blend file
         with bpy.data.libraries.load(filepath, link = False,assets_only = True) as (data_from, data_to):
@@ -147,7 +147,6 @@ class OccluderPlacementRandomizer:
 
         References
         [1]https://stackoverflow.com/questions/14262654/numpy-get-random-set-of-rows-from-2d-array
-
         """
         self.__num_occluder_in_scene = random.randint(self.num_occluder_in_scene_range["min"], self.num_occluder_in_scene_range["max"])
         # PoissonDiskSampling

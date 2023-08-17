@@ -1,19 +1,41 @@
-""" TextureRandomizer
-
-reference:
-https://dlr-rm.github.io/BlenderProc/blenderproc.python.loader.CCMaterialLoader.html#blenderproc.python.loader.CCMaterialLoader.CCMaterialLoader
-https://dlr-rm.github.io/BlenderProc/blenderproc.api.material.html#module-blenderproc.material 
-https://github.com/DLR-RM/BlenderProc/blob/main/blenderproc/python/loader/CCMaterialLoader.py
-https://github.com/DLR-RM/BlenderProc/blob/main/blenderproc/python/material/MaterialLoaderUtility.py
-
-""" 
-
 import bpy 
 import os 
 import random
 import sys
 
 class TextureRandomizer:
+    """
+    A randomizer class which randomly select different PBR material and apply it to the surface of the objects.
+
+    Configure the surface textures of objects placed in the virtual scene. The surface textures are derived from 1369 types of PBR materials.
+    Randomly select a subset of these materials and apply them to the surfaces of the objects.
+
+    Attributes
+    ----------
+    asset_ambientCGMaterial_folder_path (str): The path to the downloaded ambientCG PBR materials.
+    __collections_need_assign_material (list): List of the blender collections which need to apply material.
+    __objects_need_assign_material (list): A list of the objects which need to apply material.
+    __asset_base_image_path_list (list): All color map img paths from asset_ambientCGMaterial_folder_path.
+    __randomly_selected_base_image_path_list (list): A list of randomly selected color map img paths.
+
+    Methods
+    -------
+     __get_all_material_image_paths(): Get all color map image paths.
+     __get_objects_need_assign_material(): Get all objects which need assign material.
+     __randomly_select_materials(): Randomly select material.
+     __create_and_assign_material(): Create blender material shader node group, then import PBR texture maps.
+     texture_randomize(): Randomly apply materials to objects.
+
+    References
+    ----------
+    https://dlr-rm.github.io/BlenderProc/blenderproc.python.loader.CCMaterialLoader.html#blenderproc.python.loader.CCMaterialLoader.CCMaterialLoader
+    https://dlr-rm.github.io/BlenderProc/blenderproc.api.material.html#module-blenderproc.material 
+    https://github.com/DLR-RM/BlenderProc/blob/main/blenderproc/python/loader/CCMaterialLoader.py
+    https://github.com/DLR-RM/BlenderProc/blob/main/blenderproc/python/material/MaterialLoaderUtility.py
+
+    """
+
+
     def __init__(self, asset_ambientCGMaterial_folder_path = "C:/Users/user/Documents/project/synthDet/Asset/blenderproc_asset/cc_texture"):       
         
         self.asset_ambientCGMaterial_folder_path = asset_ambientCGMaterial_folder_path
@@ -22,12 +44,12 @@ class TextureRandomizer:
         self.__asset_base_image_path_list = list()
         self.__randomly_selected_base_image_path_list = list()
 
+
     def __get_all_material_image_paths(self):
-        """ 
-        """ 
+        """Get all color map image paths.""" 
         folder_path = self.asset_ambientCGMaterial_folder_path
 
-        ## get all base_image path from self.asset_ambientCGMaterial_folder_path
+        # Get all base_image path from self.asset_ambientCGMaterial_folder_path
         for asset in os.listdir(folder_path):
             asset_path = os.path.join(folder_path, asset)
             if os.path.isdir(asset_path):
@@ -35,28 +57,28 @@ class TextureRandomizer:
                 if os.path.exists(base_image_path):
                     self.__asset_base_image_path_list.append(base_image_path)
     
+
     def __get_objects_need_assign_material(self):
-        """ 
-        """ 
+        """Get all objects which need assign material.""" 
         for collection in self.__collections_need_assign_material:
             for obj in collection.objects:
                 self.__objects_need_assign_material.append(obj)
 
+
     def __randomly_select_materials(self):
-        """ 
-        """ 
+        """Randomly select material.""" 
         num_objects_need_assign_material = len(self.__objects_need_assign_material)
 
         self.__randomly_selected_base_image_path_list =  \
         random.choices(self.__asset_base_image_path_list, k = num_objects_need_assign_material)
 
+
     def __create_and_assign_material(self):
-        """ 
-        """ 
+        """Create blender material shader node group, then import PBR texture maps.""" 
         num_materials = len(self.__randomly_selected_base_image_path_list)
         num_objs = len(self.__objects_need_assign_material)
 
-        ## check num_materials is equal to num_objs
+        # Check num_materials is equal to num_objs
         if num_materials != num_objs:
             print(f"Warning!!! num_materials: {num_materials} not equal to num_objs: {num_objs}") 
             input("Press Enter to continues...")
@@ -65,7 +87,7 @@ class TextureRandomizer:
         for i in range(num_materials):
             current_obj = self.__objects_need_assign_material[i]
             base_image_path = self.__randomly_selected_base_image_path_list[i]
-            ## construct all image paths
+            # Construct all image paths
             ambient_occlusion_image_path =  base_image_path.replace("Color", "AmbientOcclusion")
             metallic_image_path =  base_image_path.replace("Color", "Metalness")
             roughness_image_path =  base_image_path.replace("Color", "Roughness")
@@ -73,16 +95,16 @@ class TextureRandomizer:
             normal_image_path =  base_image_path.replace("Color", "NormalGL")
             displacement_image_path =  base_image_path.replace("Color", "Displacement")
 
-            ## create new material
+            # Create new material
             new_mat_name = 'Material' + '_' + current_obj.name
             new_mat = bpy.data.materials.new(name=new_mat_name)
 
-            ## get the nodes and links
+            # Get the nodes and links
             new_mat.use_nodes = True
             nodes = new_mat.node_tree.nodes
             links = new_mat.node_tree.links
 
-            ## get BSDF node reference
+            # Get BSDF node reference
             principled_bsdf = nodes.get("Principled BSDF")
             output_node = nodes.get("Material Output")
 
@@ -90,13 +112,13 @@ class TextureRandomizer:
             _y_texture_node = 300
 
             """ 
-            add texture nodes START: (base color、ao、metallic、roughness、 alpha_node、
+            Add texture nodes START: (base color、ao、metallic、roughness、 alpha_node、
                                 normal_node、displacement_node、displacement)
             """ 
 
             collection_of_texture_nodes = []
 
-            ## base color
+            # Base color
             if os.path.exists(base_image_path):
                 base_color = nodes.new('ShaderNodeTexImage')
                 base_color.location = (_x_texture_node, _y_texture_node)
@@ -104,7 +126,8 @@ class TextureRandomizer:
                 links.new(base_color.outputs["Color"], principled_bsdf.inputs["Base Color"])
 
                 collection_of_texture_nodes.append(base_color)
-            ## ao
+            
+            # Ao
             if os.path.exists(ambient_occlusion_image_path):
                 ao_color = nodes.new('ShaderNodeTexImage')
                 ao_color.location = (_x_texture_node, _y_texture_node * 2)
@@ -120,7 +143,8 @@ class TextureRandomizer:
                 links.new(math_node.outputs["Color"], principled_bsdf.inputs["Base Color"])
 
                 collection_of_texture_nodes.append(ao_color)
-            ## metallic
+            
+            # Metallic
             if os.path.exists(metallic_image_path):
                 metallic = nodes.new('ShaderNodeTexImage')
                 metallic.location = (_x_texture_node, 0)
@@ -129,7 +153,8 @@ class TextureRandomizer:
                 links.new(metallic.outputs["Color"], principled_bsdf.inputs["Metallic"])
 
                 collection_of_texture_nodes.append(metallic)
-            ## roughness
+            
+            # Roughness
             if os.path.exists(roughness_image_path):
                 roughness_texture = nodes.new('ShaderNodeTexImage')
                 roughness_texture.location = (_x_texture_node, _y_texture_node * -1)
@@ -138,7 +163,8 @@ class TextureRandomizer:
                 links.new(roughness_texture.outputs["Color"], principled_bsdf.inputs["Roughness"])
 
                 collection_of_texture_nodes.append(roughness_texture)
-            ## alpha
+            
+            # Alpha
             if os.path.exists(alpha_image_path):
                 alpha_texture = nodes.new('ShaderNodeTexImage')
                 alpha_texture.location = (_x_texture_node, _y_texture_node * -2)
@@ -147,7 +173,8 @@ class TextureRandomizer:
                 links.new(alpha_texture.outputs["Color"], principled_bsdf.inputs["Alpha"])
 
                 collection_of_texture_nodes.append(alpha_texture)
-            ## normal
+            
+            # Normal
             if os.path.exists(normal_image_path):
                 normal_texture = nodes.new('ShaderNodeTexImage')
                 normal_y_value = _y_texture_node * -3
@@ -182,7 +209,8 @@ class TextureRandomizer:
                 links.new(normal_map.outputs["Normal"], principled_bsdf.inputs["Normal"])
 
                 collection_of_texture_nodes.append(normal_texture)
-            ## displacement
+
+            # Displacement
             if os.path.exists(displacement_image_path):
                 displacement_texture = nodes.new('ShaderNodeTexImage')
                 displacement_texture.location = (_x_texture_node, _y_texture_node * -4)
@@ -198,7 +226,7 @@ class TextureRandomizer:
 
                 collection_of_texture_nodes.append(displacement_texture)
 
-            ## connect_uv
+            # Connect uv
             collection_of_texture_nodes = [node for node in collection_of_texture_nodes if node is not None]
             if len(collection_of_texture_nodes) > 0:
                 texture_coords = nodes.new("ShaderNodeTexCoord")
@@ -212,18 +240,18 @@ class TextureRandomizer:
                         links.new(mapping_node.outputs["Vector"], texture_node.inputs["Vector"])
 
             """ 
-            add texture nodes END
+            Add texture nodes END
             """
 
-            ## add empty_material to BG & OCC objects 
+            # Add empty material to BG & OCC objects 
             if current_obj.data.materials:
                     current_obj.data.materials[0] = new_mat
             else:
                 current_obj.data.materials.append(new_mat)
 
+
     def texture_randomize(self):
-        """
-        """
+        """Randomly apply materials to objects."""
         self.__get_all_material_image_paths()
         self.__get_objects_need_assign_material()
         self.__randomly_select_materials()

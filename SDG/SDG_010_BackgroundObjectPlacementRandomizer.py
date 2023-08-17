@@ -35,6 +35,7 @@ class BackgroundObjectPlacementRandomizer:
     __posson_disc_sampling(): Using poisson disk sampling algorithm to generate the sampling.
     __import_background_object_asset(): Import a number of __n_particle background objects into current blender scene.
     background_object_placement_randomize(): Generate background.
+    
     """
 
 
@@ -56,7 +57,6 @@ class BackgroundObjectPlacementRandomizer:
 
         Args:
             asset_path_list (list): list of the path to background object assets.
-
         """
         num_asset_in_folder = len(asset_path_list)
         if num_asset_in_folder < 1:
@@ -72,11 +72,11 @@ class BackgroundObjectPlacementRandomizer:
             filepath (str): The path to background object assets.
 
         References
+        ----------
         https://studio.blender.org/training/scripting-for-artists/5eabe54d521eafd0953f6d45/
         https://docs.blender.org/api/current/bpy.types.BlendDataLibraries.html
         https://blender.stackexchange.com/questions/17876/import-object-without-bpy-ops-wm-link-append/33998#33998 
         https://blender.stackexchange.com/questions/34540/how-to-link-append-a-data-block-using-the-python-api?noredirect=1&lq=1
-
         """ 
         # Append object from .blend file
         with bpy.data.libraries.load(filepath, link = False,assets_only = True) as (data_from, data_to):

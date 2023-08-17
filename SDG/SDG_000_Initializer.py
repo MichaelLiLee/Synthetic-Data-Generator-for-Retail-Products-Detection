@@ -19,8 +19,9 @@ class Initializer:
     init(): Initialize the blender scene to its initial state.
 
     References
+    ----------
     https://github.com/DLR-RM/BlenderProc/blob/ea934e1b5df747dfcb5faf177092e156e5ca3356/blenderproc/python/utility/Initializer.py
-
+    
     """
 
     def __init__(self):

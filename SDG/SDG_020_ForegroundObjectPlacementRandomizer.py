@@ -20,12 +20,12 @@ class ForegroundObjectPlacementRandomizer:
 
     Attributes
     ----------
-    num_foreground_object_in_scene_range (dict): The distribution of retail items within the virtual scene.
+    num_foreground_object_in_scene_range (dict): The distribution of the number of retail items within the virtual scene.
     __num_foreground_object_in_scene (int): The number of retail items within the virtual scene.
     foreground_area (list): Spatial distribution area of foreground objects.
     foreground_poisson_disk_sampling_radius (float): Foreground objects separation distance.
     asset_foreground_object_folder_path (str): The path to foreground object assets.
-    __foreground_object_collection (bpy.data.collections): The Collection data-block of foreground objects.
+    __foreground_object_collection (bpy.data.collections): The blender collection data-block of foreground objects.
     __n_particle (int): Number of generated particles of the poisson disks sampling.
     __particle_coordinates (numpy.array): Coordinates of the poisson disks sampling.
 
@@ -36,6 +36,7 @@ class ForegroundObjectPlacementRandomizer:
     __posson_disc_sampling(): Using poisson disk sampling algorithm to generate the sampling.
     __import_foreground_object_asset(): Import a number of __n_particle foreground objects into current blender scene.
     foreground_object_placement_randomize(): Generate foreground.
+    
     """
 
 
@@ -77,11 +78,11 @@ class ForegroundObjectPlacementRandomizer:
             filepath (str): The path to background object assets.
 
         References
+        ----------
         https://studio.blender.org/training/scripting-for-artists/5eabe54d521eafd0953f6d45/
         https://docs.blender.org/api/current/bpy.types.BlendDataLibraries.html
         https://blender.stackexchange.com/questions/17876/import-object-without-bpy-ops-wm-link-append/33998#33998 
         https://blender.stackexchange.com/questions/34540/how-to-link-append-a-data-block-using-the-python-api?noredirect=1&lq=1
-
         """ 
         ## Append object from .blend file
         with bpy.data.libraries.load(filepath, link = False,assets_only = True) as (data_from, data_to):
@@ -145,7 +146,6 @@ class ForegroundObjectPlacementRandomizer:
 
         References
         [1]https://stackoverflow.com/questions/14262654/numpy-get-random-set-of-rows-from-2d-array
-
         """
         self.__num_foreground_object_in_scene = random.randint(self.num_foreground_object_in_scene_range["min"], self.num_foreground_object_in_scene_range["max"])
 
