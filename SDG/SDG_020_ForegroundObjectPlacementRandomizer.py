@@ -13,15 +13,15 @@ class ForegroundObjectPlacementRandomizer:
     """
     A randomizer class which randomly spawns foreground objects.
 
-    The foreground generation process of the virtual scene involves selecting a subset from a pool of 63 retail items 3D assets.
+    The foreground generation process of the blender scene involves selecting a subset from a pool of 63 retail items 3D assets.
     These chosen 3D assets are placed randomly within the region above the background objects.
     The placement positions of the foreground objects and their distances from each other are determined through 
     Poisson distribution sampling within the specified spatial area.
 
     Attributes
     ----------
-    num_foreground_object_in_scene_range (dict): The distribution of the number of retail items within the virtual scene.
-    __num_foreground_object_in_scene (int): The number of retail items within the virtual scene.
+    num_foreground_object_in_scene_range (dict): The distribution of the number of retail items within the blender scene.
+    __num_foreground_object_in_scene (int): The number of retail items within the blender scene.
     foreground_area (list): Spatial distribution area of foreground objects.
     foreground_poisson_disk_sampling_radius (float): Foreground objects separation distance.
     asset_foreground_object_folder_path (str): The path to foreground object assets.
@@ -36,9 +36,8 @@ class ForegroundObjectPlacementRandomizer:
     __posson_disc_sampling(): Using poisson disk sampling algorithm to generate the sampling.
     __import_foreground_object_asset(): Import a number of __n_particle foreground objects into current blender scene.
     foreground_object_placement_randomize(): Generate foreground.
-    
-    """
 
+    """
 
     def __init__(self,
                  num_foreground_object_in_scene_range = {"min": 8 , "max": 20},

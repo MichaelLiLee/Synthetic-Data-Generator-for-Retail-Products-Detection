@@ -13,7 +13,7 @@ class OccluderPlacementRandomizer:
     """
     A randomizer class which randomly spawns occluder objects. 
 
-    The method of generating occlusion objects in the virtual scene involves selecting from a set of 3D models containing various simple geometric shapes
+    The method of generating occlusion objects in the blender scene involves selecting from a set of 3D models containing various simple geometric shapes
     such as cubes and cylinders. These occlusion objects are then randomly placed within the region above the foreground objects. The placement positions of 
     the occlusion objects and their distances from each other are determined through Poisson distribution sampling within the specified spatial area.
 
@@ -36,9 +36,8 @@ class OccluderPlacementRandomizer:
     __posson_disc_sampling(): Using poisson disk sampling algorithm to generate the sampling.
     __import_occluder_asset(): Import a number of __n_particle occlusion objects into current blender scene.
     occluder_placement_randomize(): Generate occlusion.
-    
-    """ 
 
+    """ 
 
     def __init__(self, 
                 num_occluder_in_scene_range = {"min": 5 , "max": 10},

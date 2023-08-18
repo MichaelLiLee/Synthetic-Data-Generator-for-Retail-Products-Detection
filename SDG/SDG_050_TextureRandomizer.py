@@ -7,7 +7,7 @@ class TextureRandomizer:
     """
     A randomizer class which randomly select different PBR material and apply it to the surface of the objects.
 
-    Configure the surface textures of objects placed in the virtual scene. The surface textures are derived from 1369 types of PBR materials.
+    Configure the surface textures of objects placed in the blender scene. The surface textures are derived from 1369 types of PBR materials.
     Randomly select a subset of these materials and apply them to the surfaces of the objects.
 
     Attributes
@@ -34,7 +34,6 @@ class TextureRandomizer:
     https://github.com/DLR-RM/BlenderProc/blob/main/blenderproc/python/material/MaterialLoaderUtility.py
 
     """
-
 
     def __init__(self, asset_ambientCGMaterial_folder_path = "C:/Users/user/Documents/project/synthDet/Asset/blenderproc_asset/cc_texture"):       
         

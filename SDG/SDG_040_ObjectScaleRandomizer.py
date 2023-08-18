@@ -8,9 +8,9 @@ class ObjectScaleRandomizer:
 
     Attributes
     ----------
-    bg_obj_scale_ratio_range (dict): The distribution of the scale ratio of background objects within the virtual scene.
-    fg_obj_scale_ratio_range (dict): The distribution of the scale ratio of foreground objects within the virtual scene.
-    occluder_scale_ratio_range (dict): The distribution of the scale ratio of occluder objects within the virtual scene.
+    bg_obj_scale_ratio_range (dict): The distribution of the scale ratio of background objects within the blender scene.
+    fg_obj_scale_ratio_range (dict): The distribution of the scale ratio of foreground objects within the blender scene.
+    occluder_scale_ratio_range (dict): The distribution of the scale ratio of occluder objects within the blender scene.
     __background_object_collection (bpy.data.collections): The blender collection data-block of background objects.
     __foreground_object_collection (bpy.data.collections): The blender collection data-block of foreground objects.
     __occluder_collection (bpy.data.collections): The blender collection data-block of occlusion objects.
@@ -22,9 +22,8 @@ class ObjectScaleRandomizer:
     __foreground_scale_randomize(): Randomizes the scale of the foreground objects in the scene.
     __occluder_scale_randomize(): Randomizes the scale of the occluder objects in the scene.
     object_scale_randomize(): Randomizes the scale of the background, foreground and occluder objects in the scene.
-    
-    """ 
 
+    """ 
 
     def __init__(self, 
                 bg_obj_scale_ratio_range = {"min": 2.5, "max": 2.5},

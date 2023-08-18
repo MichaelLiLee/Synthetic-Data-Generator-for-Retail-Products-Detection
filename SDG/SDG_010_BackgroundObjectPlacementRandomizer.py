@@ -13,7 +13,7 @@ class BackgroundObjectPlacementRandomizer:
     """ 
     A randomizer class which generate a background consists of a large number of primitive shapes.
 
-    The background generation process of the virtual scene involves selecting from a set of 3D models containing various 
+    The background generation process of the blender scene involves selecting from a set of 3D models containing various 
     simple geometric shapes such as cubes and cylinders. These chosen models are randomly placed and filled in the background 
     of the virtual scene to form a background wall.The placement positions of the 3D models and their distances from each other 
     are determined throughPoisson distribution sampling within the specified plane area.
@@ -35,9 +35,8 @@ class BackgroundObjectPlacementRandomizer:
     __posson_disc_sampling(): Using poisson disk sampling algorithm to generate the sampling.
     __import_background_object_asset(): Import a number of __n_particle background objects into current blender scene.
     background_object_placement_randomize(): Generate background.
-    
-    """
 
+    """
 
     def __init__(self, 
                 asset_background_object_folder_path = 'C:/Users/user/Documents/project/synthDet/Asset/background_object',
