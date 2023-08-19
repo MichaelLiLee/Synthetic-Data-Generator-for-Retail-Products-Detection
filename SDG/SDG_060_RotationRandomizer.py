@@ -9,7 +9,7 @@ class RotationRandomizer:
 
     Attributes
     ----------
-    __collections_for_rotation_randomize (list): List of the blender collections which need to been rotated.
+    __collections_for_rotation_randomize (list of bpy.types.Collection): List of the blender collections which need to been rotated.
 
     Methods
     -------

@@ -13,10 +13,10 @@ class TextureRandomizer:
     Attributes
     ----------
     asset_ambientCGMaterial_folder_path (str): The path to the downloaded ambientCG PBR materials.
-    __collections_need_assign_material (list): List of the blender collections which need to apply material.
-    __objects_need_assign_material (list): A list of the objects which need to apply material.
-    __asset_base_image_path_list (list): All color map img paths from asset_ambientCGMaterial_folder_path.
-    __randomly_selected_base_image_path_list (list): A list of randomly selected color map img paths.
+    __collections_need_assign_material (list of bpy.types.Collection): List of the blender collections which need to apply material.
+    __objects_need_assign_material (list of bpy.types.Object): A list of the blender objects which need to apply material.
+    __asset_base_image_path_list (list of str): All color map img paths from asset_ambientCGMaterial_folder_path.
+    __randomly_selected_base_image_path_list (list of str): A list of randomly selected color map img paths.
 
     Methods
     -------

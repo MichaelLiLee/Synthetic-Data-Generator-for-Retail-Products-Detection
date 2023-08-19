@@ -21,7 +21,7 @@ class LightRandomizer:
     Attributes
     ----------
     asset_hdri_lighting_folder_path (str): The path to the downloaded Poly Haven HDRIs.
-    hdri_lighting_strength_range (dict): The distribution of the strength factor for the intensity of the HDRI scene light.
+    hdri_lighting_strength_range (dict of str: float): The distribution of the strength factor for the intensity of the HDRI scene light.
 
     Methods
     -------

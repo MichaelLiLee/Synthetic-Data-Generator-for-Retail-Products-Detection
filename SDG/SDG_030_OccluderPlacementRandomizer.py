@@ -19,15 +19,15 @@ class OccluderPlacementRandomizer:
 
     Attributes
     ----------
-    num_occluder_in_scene_range (dict): The distribution of the number of occlusion objects within the virtual scene.
+    num_occluder_in_scene_range (dict of str: int): The distribution of the number of occlusion objects within the virtual scene.
     __num_occluder_in_scene (int): The number of occlusion objects within the virtual scene.
-    occluder_area (list): Spatial distribution area of occlusion objects.
-    __occluder_domain_size (numpy.array): Spatial distribution area of occlusion objects.
+    occluder_area (list of float): Spatial distribution area of occlusion objects.
+    __occluder_domain_size (numpy.ndarray): Spatial distribution area of occlusion objects.
     occluder_poisson_disk_sampling_radius (float): Occlusion objects separation distance.
     asset_occluder_folder_path (str): The path to occlusion object assets.
-    __occluder_collection (bpy.data.collections): The blender collection data-block of occlusion objects.
+    __occluder_collection (bpy.types.Collection): The blender collection data-block of occlusion objects.
     __n_particle (int): Number of generated particles of the poisson disks sampling.
-    __particle_coordinates (numpy.array): Coordinates of the poisson disks sampling.
+    __particle_coordinates (numpy.ndarray): Coordinates of the poisson disks sampling.
 
     Methods
     -------
@@ -60,7 +60,7 @@ class OccluderPlacementRandomizer:
         """Check assigned background object assets folder path isn't empty.
 
         Args:
-            asset_path_list (list): list of the path to background object assets.
+            asset_path_list (list of str): list of the path to background object assets.
 
         """
         num_asset_in_folder = len(asset_path_list)

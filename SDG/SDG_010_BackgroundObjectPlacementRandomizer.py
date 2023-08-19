@@ -20,13 +20,13 @@ class BackgroundObjectPlacementRandomizer:
 
     Attributes
     ----------
-    __background_plane_size (list): Background plane dimension(x, y).
+    __background_plane_size (list of float): Background plane dimension(x, y).
     background_poisson_disk_sampling_radius (str): Background objects separation distance.
-    __background_domain_size (numpy.array): Spatial distribution area of background objects.
+    __background_domain_size (numpy.ndarray): Spatial distribution area of background objects.
     asset_background_object_folder_path (str): The path to background object assets.
-    __background_object_collection (bpy.data.collections): The Collection data-block of background objects.
+    __background_object_collection (bpy.types.Collection): The Collection data-block of background objects.
     __n_particle (int): Number of generated particles of the poisson disks sampling.
-    __particle_coordinates (numpy.array): Coordinates of the poisson disks sampling.
+    __particle_coordinates (numpy.ndarray): Coordinates of the poisson disks sampling.
 
     Methods
     -------
@@ -55,7 +55,7 @@ class BackgroundObjectPlacementRandomizer:
         """Check assigned background object assets folder path isn't empty.
 
         Args:
-            asset_path_list (list): list of the path to background object assets.
+            asset_path_list (list of str): list of the path to background object assets.
         """
         num_asset_in_folder = len(asset_path_list)
         if num_asset_in_folder < 1:

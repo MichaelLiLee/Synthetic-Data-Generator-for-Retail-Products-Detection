@@ -10,8 +10,8 @@ class Initializer:
     ----------
     __render_engine (str): Engine to use for rendering.
     __render_device (str): Device to use for rendering.
-    __collection_need_create (list): Scene Collection need to create.
-    __camera_location (tuple): Initial camera location.
+    __collection_need_create (list of str): Scene Collection need to create.
+    __camera_location (tuple of int): Initial camera location.
 
     Methods
     -------

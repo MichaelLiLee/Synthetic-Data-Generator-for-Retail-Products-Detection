@@ -30,6 +30,46 @@ import numpy as np
 import random
 
 class CameraRandomizer:
+    """ 
+     
+
+   c
+    ----------
+    camera_focal_length (int):
+    img_resolution_x (int):
+    img_resolution_y (int):
+    max_samples (int):
+    chromatic_aberration_probability (float):
+    chromatic_aberration_value_range (dict of str: float):
+    blur_probability ():
+    blur_value_range (dict of str: int):
+    motion_blur_probability (float):
+    motion_blur_value_range (dict of str: ):
+    exposure_probability ():
+    exposure_value_range (dict of str: ):
+    noise_probability ():
+    noise_value_range (dict of str: ):
+    white_balance_probability (float):
+    white_balance_value_range (dict of str: ):
+    brightness_probability (float):
+    brightness_value_range (dict of str: ):
+    contrast_probability (float):
+    contrast_value_range (dict of str: ):
+    hue_probability ():
+    hue_value_range (dict of str: ):
+    saturation_probability (float):
+    saturation_value_range (dict of str: ):
+    __vector_blur_factor ():
+    __curve_g_point_list ():
+    __curve_b_point_list ():
+
+    Methods
+    -------
+
+    References
+    ----------
+
+    """
     def __init__(self,
                  camera_focal_length = 35,
                  img_resolution_x = 1728,

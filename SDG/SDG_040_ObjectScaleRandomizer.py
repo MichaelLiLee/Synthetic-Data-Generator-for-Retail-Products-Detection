@@ -8,12 +8,12 @@ class ObjectScaleRandomizer:
 
     Attributes
     ----------
-    bg_obj_scale_ratio_range (dict): The distribution of the scale ratio of background objects within the blender scene.
-    fg_obj_scale_ratio_range (dict): The distribution of the scale ratio of foreground objects within the blender scene.
-    occluder_scale_ratio_range (dict): The distribution of the scale ratio of occluder objects within the blender scene.
-    __background_object_collection (bpy.data.collections): The blender collection data-block of background objects.
-    __foreground_object_collection (bpy.data.collections): The blender collection data-block of foreground objects.
-    __occluder_collection (bpy.data.collections): The blender collection data-block of occlusion objects.
+    bg_obj_scale_ratio_range (dict of str: float): The distribution of the scale ratio of background objects within the blender scene.
+    fg_obj_scale_ratio_range (dict of str: float): The distribution of the scale ratio of foreground objects within the blender scene.
+    occluder_scale_ratio_range (dict of float): The distribution of the scale ratio of occluder objects within the blender scene.
+    __background_object_collection (bpy.types.Collection): The blender collection data-block of background objects.
+    __foreground_object_collection (bpy.types.Collection): The blender collection data-block of foreground objects.
+    __occluder_collection (bpy.types.Collection): The blender collection data-block of occlusion objects.
 
     Methods
     -------
@@ -42,8 +42,8 @@ class ObjectScaleRandomizer:
         """Randomizes the scale of the objects in the scene.
 
         Args:
-            collection (bpy.data.collections): The blender collection data-block of scaled objects.
-            obj_scale_ratio_range (dict): The distribution of the scale ratio of objects.
+            collection (bpy.types.Collection): The blender collection data-block of scaled objects.
+            obj_scale_ratio_range (dict of str: float): The distribution of the scale ratio of objects.
 
         """ 
         for obj in collection.objects:

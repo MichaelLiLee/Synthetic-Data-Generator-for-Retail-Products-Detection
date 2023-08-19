@@ -20,14 +20,14 @@ class ForegroundObjectPlacementRandomizer:
 
     Attributes
     ----------
-    num_foreground_object_in_scene_range (dict): The distribution of the number of retail items within the blender scene.
+    num_foreground_object_in_scene_range (dict of str: int): The distribution of the number of retail items within the blender scene.
     __num_foreground_object_in_scene (int): The number of retail items within the blender scene.
-    foreground_area (list): Spatial distribution area of foreground objects.
+    foreground_area (list of float): Spatial distribution area of foreground objects.
     foreground_poisson_disk_sampling_radius (float): Foreground objects separation distance.
     asset_foreground_object_folder_path (str): The path to foreground object assets.
-    __foreground_object_collection (bpy.data.collections): The blender collection data-block of foreground objects.
+    __foreground_object_collection (bpy.types.Collection): The blender collection data-block of foreground objects.
     __n_particle (int): Number of generated particles of the poisson disks sampling.
-    __particle_coordinates (numpy.array): Coordinates of the poisson disks sampling.
+    __particle_coordinates (numpy.ndarray): Coordinates of the poisson disks sampling.
 
     Methods
     -------
@@ -60,7 +60,7 @@ class ForegroundObjectPlacementRandomizer:
         """Check assigned background object assets folder path isn't empty.
 
         Args:
-            asset_path_list (list): list of the path to background object assets.
+            asset_path_list (list of str): list of the path to background object assets.
 
         """ 
         num_asset_in_folder = len(asset_path_list)

@@ -14,9 +14,9 @@ class SimpleTextureRandomizer:
     Attributes
     ----------
     asset_img_texture_path (str): The path to the downloaded Freiburg Groceries dataset image textures.
-    __collections_need_assign_texture (list): List of the blender collections which need to apply image texture.
-    __objects_need_assign_texture (list): A list of the objects which need to apply image texture.
-    __mat (bpy.data.materials): temporary storage of a blender material.
+    __collections_need_assign_texture (list of bpy.types.Collection): List of the blender collections which need to apply image texture.
+    __objects_need_assign_texture (list of bpy.types.Object): A list of the objects which need to apply image texture.
+    __mat (bpy.types.Material): temporary storage of a blender material.
 
     Methods
     -------
