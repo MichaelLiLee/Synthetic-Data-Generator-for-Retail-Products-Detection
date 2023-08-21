@@ -1,5 +1,6 @@
 ## TODO
-- [ ] ode Docstring(Google Style)
+- [ ] add Docstring(Google Style)
+- [ ] grammar check
 - [ ] 資產下載腳本
 - [ ] fiftyoneViewer
 - [ ] 真實資料集載點

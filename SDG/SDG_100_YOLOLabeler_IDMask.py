@@ -15,6 +15,36 @@ import datetime
 import os
 
 class YOLOLabeler:
+    """ 
+
+    Attributes
+    ----------
+    output_img_path (str): The path where rendered images will be saved.
+    output_label_path (str): The path where YOLO format bounding box annotations will be saved.
+    __obj_name_and_id_dict (dict of str: int): 
+    __obj_name_and_bbox_dict (dict of str: list of list of int): 
+    __target_obj_collection (bpy.types.Collection): 
+    __minimum_obj_pixel (int): 
+    __gen_img_id (str): 
+    __render_machine_id (str): 
+    __obj_name_and_class_id_mapping (dict of str: int): 
+
+    Methods
+    -------
+    __create_and_switch_annotation_scene(): 
+    __create_gen_img_id(): 
+    __create_id_mask_nodes(): 
+    __add_pass_index(): 
+    __annotation_render(): 
+    __find_obj_bbox(): 
+    __get_obj_class_id(): 
+    __format_coordinates(): 
+    __get_all_coordinates(): 
+    get_and_save_yolo_label(): 
+
+    References
+    ----------
+    """ 
     def __init__(self,
                  output_img_path = "C:/Users/user/Documents/project/synthDet/gen_data_2/images",
                  output_label_path = "C:/Users/user/Documents/project/synthDet/gen_data_2/labels"
@@ -29,70 +59,70 @@ class YOLOLabeler:
         self.__gen_img_id = None
         self.__render_machine_id = "a"
         self.__obj_name_and_class_id_mapping = {
-"book_dorkdiaries_aladdin" : 0,  
-"candy_minipralines_lindt" : 1,
-"candy_raffaello_confetteria" : 2,
-"cereal_capn_crunch" : 3,
-"cereal_cheerios_honeynut" : 4,
-"cereal_corn_flakes" : 5,
-"cereal_cracklinoatbran_kelloggs" : 6,
-"cereal_oatmealsquares_quaker" : 7,
-"cereal_puffins_barbaras" : 8,
-"cereal_raisin_bran" : 9,
-"cereal_rice_krispies" : 10,
-"chips_gardensalsa_sunchips" : 11,
-"chips_sourcream_lays" : 12,
-"cleaning_freegentle_tide" : 13,
-"cleaning_snuggle_henkel" : 14,
-"cracker_honeymaid_nabisco" : 15,
-"cracker_lightrye_wasa" : 16,
-"cracker_triscuit_avocado" : 17,
-"cracker_zwieback_brandt" : 18,
-"craft_yarn_caron" : 19,
-"drink_adrenaline_shock" : 20,
-"drink_coffeebeans_kickinghorse" : 21,
-"drink_greentea_itoen" : 22,
-"drink_orangejuice_minutemaid" : 23,
-"drink_whippingcream_lucerne" : 24,
-"footware_slippers_disney" : 25,
-"hygiene_poise_pads" : 26,
-"lotion_essentially_nivea" : 27,
-"lotion_vanilla_nivea" : 28,
-"pasta_lasagne_barilla" : 29,
-"pest_antbaits_terro" : 30,
-"porridge_grits_quaker" : 31,
-"seasoning_canesugar_candh" : 32,
-"snack_breadsticks_nutella" : 33,
-"snack_chips_pringles" : 34,
-"snack_coffeecakes_hostess" : 35,
-"snack_cookie_famousamos" : 36,
-"snack_biscotti_ghiott" : 37,
-"snack_cookie_petitecolier" : 38,
-"snack_cookie_quadratini" : 39,
-"snack_cookie_waffeletten" : 40,
-"snack_cookie_walkers" : 41,
-"snack_cookies_fourre" : 42,
-"snack_granolabar_kashi" : 43,
-"snack_granolabar_kind" : 44,
-"snack_granolabar_naturevalley" : 45,
-"snack_granolabar_quaker" : 46,
-"snack_salame_hillshire" : 47,
-"soup_chickenenchilada_progresso" : 48,
-"soup_tomato_pacific" : 49,
-"storage_ziploc_sandwich" : 50,
-"toiletry_tissue_softly" : 51,
-"toiletry_toothpaste_colgate" : 52,
-"toy_cat_melissa" : 53,
-"utensil_candle_decorators" : 54,
-"utensil_coffee_filters" : 55,
-"utensil_cottonovals_signaturecare" : 56,
-"utensil_papertowels_valuecorner" : 57,
-"utensil_toiletpaper_scott" : 58,
-"utensil_trashbag_valuecorner" : 59,
-"vitamin_centrumsilver_adults" : 60,
-"vitamin_centrumsilver_men" : 61,
-"vitamin_centrumsilver_woman" : 62
-}
+            "book_dorkdiaries_aladdin" : 0,  
+            "candy_minipralines_lindt" : 1,
+            "candy_raffaello_confetteria" : 2,
+            "cereal_capn_crunch" : 3,
+            "cereal_cheerios_honeynut" : 4,
+            "cereal_corn_flakes" : 5,
+            "cereal_cracklinoatbran_kelloggs" : 6,
+            "cereal_oatmealsquares_quaker" : 7,
+            "cereal_puffins_barbaras" : 8,
+            "cereal_raisin_bran" : 9,
+            "cereal_rice_krispies" : 10,
+            "chips_gardensalsa_sunchips" : 11,
+            "chips_sourcream_lays" : 12,
+            "cleaning_freegentle_tide" : 13,
+            "cleaning_snuggle_henkel" : 14,
+            "cracker_honeymaid_nabisco" : 15,
+            "cracker_lightrye_wasa" : 16,
+            "cracker_triscuit_avocado" : 17,
+            "cracker_zwieback_brandt" : 18,
+            "craft_yarn_caron" : 19,
+            "drink_adrenaline_shock" : 20,
+            "drink_coffeebeans_kickinghorse" : 21,
+            "drink_greentea_itoen" : 22,
+            "drink_orangejuice_minutemaid" : 23,
+            "drink_whippingcream_lucerne" : 24,
+            "footware_slippers_disney" : 25,
+            "hygiene_poise_pads" : 26,
+            "lotion_essentially_nivea" : 27,
+            "lotion_vanilla_nivea" : 28,
+            "pasta_lasagne_barilla" : 29,
+            "pest_antbaits_terro" : 30,
+            "porridge_grits_quaker" : 31,
+            "seasoning_canesugar_candh" : 32,
+            "snack_breadsticks_nutella" : 33,
+            "snack_chips_pringles" : 34,
+            "snack_coffeecakes_hostess" : 35,
+            "snack_cookie_famousamos" : 36,
+            "snack_biscotti_ghiott" : 37,
+            "snack_cookie_petitecolier" : 38,
+            "snack_cookie_quadratini" : 39,
+            "snack_cookie_waffeletten" : 40,
+            "snack_cookie_walkers" : 41,
+            "snack_cookies_fourre" : 42,
+            "snack_granolabar_kashi" : 43,
+            "snack_granolabar_kind" : 44,
+            "snack_granolabar_naturevalley" : 45,
+            "snack_granolabar_quaker" : 46,
+            "snack_salame_hillshire" : 47,
+            "soup_chickenenchilada_progresso" : 48,
+            "soup_tomato_pacific" : 49,
+            "storage_ziploc_sandwich" : 50,
+            "toiletry_tissue_softly" : 51,
+            "toiletry_toothpaste_colgate" : 52,
+            "toy_cat_melissa" : 53,
+            "utensil_candle_decorators" : 54,
+            "utensil_coffee_filters" : 55,
+            "utensil_cottonovals_signaturecare" : 56,
+            "utensil_papertowels_valuecorner" : 57,
+            "utensil_toiletpaper_scott" : 58,
+            "utensil_trashbag_valuecorner" : 59,
+            "vitamin_centrumsilver_adults" : 60,
+            "vitamin_centrumsilver_men" : 61,
+            "vitamin_centrumsilver_woman" : 62
+            }
 
     def __create_and_switch_annotation_scene(self):
         """
@@ -117,7 +147,7 @@ class YOLOLabeler:
 
         return id
     
-    def  __create_id_mask_nodes(self):
+    def __create_id_mask_nodes(self):
         """ 
         """
         ## active compositing nodes
