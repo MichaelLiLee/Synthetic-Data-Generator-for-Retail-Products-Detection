@@ -27,7 +27,7 @@ class LightRandomizer:
     -------
     __error_check(): Check assigned HDRI assets folder path isn't empty.
     __create_world_shader_nodes(): Create world shader node group.
-    light_randomize(): Randomly apply a HDRI lighting.
+    light_randomize(): Randomly apply a HDRI lighting and adjust light intensity.
 
     References
     ----------
@@ -85,7 +85,7 @@ class LightRandomizer:
 
 
     def light_randomize(self):
-        """Randomly apply a HDRI lighting.""" 
+        """Randomly apply a HDRI lighting and adjust light intensity.""" 
         self.__create_world_shader_nodes()
 
         # Background node reference
