@@ -476,8 +476,7 @@ class CameraRandomizer:
 
  
     def camera_randomize(self):
-        """ 
-        Randomizes vary camera sensor effects - chromatic aberration, blur, motion blur ,exposure, noise, color temperature, 
+        """Randomizes vary camera sensor effects - chromatic aberration, blur, motion blur ,exposure, noise, color temperature, 
         brightness, contrast, hue and saturation.
         """ 
         self.__set_camera()

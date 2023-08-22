@@ -127,7 +127,7 @@ class BackgroundObjectPlacementRandomizer:
 
 
     def background_object_placement_randomize(self):
-        """Generate background """  
+        """Generate background."""  
         # PoissonDiskSampling
         self.__posson_disc_sampling()
 
