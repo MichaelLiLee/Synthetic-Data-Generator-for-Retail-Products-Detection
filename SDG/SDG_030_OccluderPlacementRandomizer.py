@@ -19,8 +19,8 @@ class OccluderPlacementRandomizer:
 
     Attributes
     ----------
-    num_occluder_in_scene_range (dict of str: int): The distribution of the number of occlusion objects within the virtual scene.
-    __num_occluder_in_scene (int): The number of occlusion objects within the virtual scene.
+    num_occluder_in_scene_range (dict of str: int): The distribution of the number of occlusion objects within the blender scene.
+    __num_occluder_in_scene (int): The number of occlusion objects within the blender scene.
     occluder_area (list of float): Spatial distribution area of occlusion objects.
     __occluder_domain_size (numpy.ndarray): Spatial distribution area of occlusion objects.
     occluder_poisson_disk_sampling_radius (float): Occlusion objects separation distance.

@@ -21,7 +21,7 @@ class BackgroundObjectPlacementRandomizer:
     Attributes
     ----------
     __background_plane_size (list of float): Background plane dimension(x, y).
-    background_poisson_disk_sampling_radius (str): Background objects separation distance.
+    background_poisson_disk_sampling_radius (float): Background objects separation distance.
     __background_domain_size (numpy.ndarray): Spatial distribution area of background objects.
     asset_background_object_folder_path (str): The path to background object assets.
     __background_object_collection (bpy.types.Collection): The Collection data-block of background objects.

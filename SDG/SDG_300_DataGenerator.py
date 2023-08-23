@@ -7,7 +7,7 @@ https://stackoverflow.com/questions/50752302/python3-pycache-generating-even-if-
 https://blender.stackexchange.com/questions/140789/what-is-the-replacement-for-scene-update
 """
 
-## add SynthDet related python files path to system path
+## Add SDG related python files path to system path
 import sys
 import os
 module_path = os.path.dirname(os.path.abspath(__file__))
@@ -16,7 +16,7 @@ for p in sys.path:
     sys_path_list.append(p)
 if module_path not in sys_path_list:
     sys.path.append(module_path)
-## prevent create __pycache__ file
+# Prevent to create __pycache__ file
 sys.dont_write_bytecode = True
 
 import bpy
@@ -31,16 +31,27 @@ from SDG_070_UnifiedRotationRandomizer import UnifiedRotationRandomizer
 from SDG_080_LightRandomizer import LightRandomizer
 from SDG_090_CameraRandomizer import CameraRandomizer
 from SDG_100_YOLOLabeler_IDMask import YOLOLabeler
-from SDG_200_SynthDetParameter import SynthDetParameter
+from SDG_200_SDGParameter import SDGParameter
 
 class DataGenerator:
+    """
+
+    Methods
+    -------
+    gen_one_data(): 
+
+    References
+    ----------
+
+
+    """
     
     def gen_one_data(self):
         """ 
         """ 
-        ## SynthDet component_initialize
+        # SDG component_initialize
         initializer = Initializer()
-        parameter = SynthDetParameter()
+        parameter = SDGParameter()
         initializer.init()
         background_object_placement_randomizer = BackgroundObjectPlacementRandomizer()
         foreground_object_placement_randomizer = ForegroundObjectPlacementRandomizer()
@@ -55,7 +66,7 @@ class DataGenerator:
 
         print("Component Initialize Completed!!!")
 
-        ## passing params
+        # Passing params
         background_object_placement_randomizer.background_poisson_disk_sampling_radius = parameter.background_poisson_disk_sampling_radius
         background_object_placement_randomizer.asset_background_object_folder_path = parameter.asset_background_object_folder_path
         foreground_object_placement_randomizer.num_foreground_object_in_scene_range = parameter.num_foreground_object_in_scene_range
@@ -98,7 +109,7 @@ class DataGenerator:
         yolo_labeler.output_img_path = parameter.output_img_path
         yolo_labeler.output_label_path = parameter.output_label_path
 
-        ## main data generate flow
+        # Main data generate flow
         background_object_placement_randomizer.background_object_placement_randomize()
         foreground_object_placement_randomizer.foreground_object_placement_randomize()
         occluder_placement_randomizer.occluder_placement_randomize()
@@ -108,7 +119,7 @@ class DataGenerator:
         unified_rotation_randomizer.unified_rotation_randomize()
         light_randomizer.light_randomize()
         camera_randomizer.camera_randomize()
-        bpy.data.scenes["Scene"].view_layers.update()## Update view layer
+        bpy.data.scenes["Scene"].view_layers.update()# Update view layer
         yolo_labeler.get_and_save_yolo_label()
 
         print("One Data Generating Cylce Completed!!!")

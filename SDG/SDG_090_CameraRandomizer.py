@@ -15,25 +15,25 @@ class CameraRandomizer:
     img_resolution_x (int): Number of horizontal pixels in the rendered image.
     img_resolution_y (int): Number of vertical pixels in the rendered image.
     max_samples (int): Number of samples to render for each pixel.
-    chromatic_aberration_probability (float): Chromatic aberration effect enabled probability.
+    chromatic_aberration_probability (float): Probability of chromatic aberration effect being enabled.
     chromatic_aberration_value_range (dict of str: float): The distribution of the value of Lens Distortion nodes input-Dispersion, which simulates chromatic aberration.
-    blur_probability (float): Blur effect enabled probability.
+    blur_probability (float): Probability of blur effect being enabled.
     blur_value_range (dict of str: int): The distribution of the value of Blur nodes input-Size, which controls the blur radius values.
-    motion_blur_probability (float): Motion blur effect enabled probability.
+    motion_blur_probability (float): Probability of motion blur effect being enabled.
     motion_blur_value_range (dict of str: int): The distribution of the value of Vector Blur nodes input-Speed, which controls the direction of motion.
-    exposure_probability (float): Exposure effect enabled probability.
+    exposure_probability (float): Probability of exposure adjustment being enabled.
     exposure_value_range (dict of str: float): The distribution of the value of Exposure nodes input-Exposure, which controls the scalar factor to adjust the exposure.
-    noise_probability (float): Noise effect enabled probability.
+    noise_probability (float): Probability of noise effect being enabled.
     noise_value_range (dict of str: float): The distribution of the value of brightness of the noise texture.
-    white_balance_probability (float): White balance adjustment enabled probability.
+    white_balance_probability (float): Probability of white balance adjustment being enabled.
     white_balance_value_range (dict of str: int): The distribution of the value of WhiteBalanceNode input-ColorTemperature, which adjust the color temperature.
-    brightness_probability (float): Brightness adjustment enabled probability.
+    brightness_probability (float): Probability of brightness adjustment being enabled.
     brightness_value_range (dict of str: float): The distribution of the value of Bright/Contrast nodes input-Bright, which adjust the brightness.
-    contrast_probability (float): Contrast adjustment enabled probability.
+    contrast_probability (float): Probability of contrast adjustment being enabled.
     contrast_value_range (dict of str: float): The distribution of the value of Bright/Contrast nodes input-Contrast, which adjust the contrast.
-    hue_probability (float): Hue adjustment enabled probability.
+    hue_probability (float): Probability of hue adjustment being enabled.
     hue_value_range (dict of str: float): The distribution of the value of Hue Saturation Value nodes input-Hue, which adjust the hue.
-    saturation_probability (float): Saturation adjustment enabled probability.
+    saturation_probability (float): Probability of saturation adjustment being enabled.
     saturation_value_range (dict of str: float): The distribution of the value of Hue Saturation Value nodes input-Saturation, which adjust the saturation.
     __vector_blur_factor (float): Control the Vector Blur nodes input-Blur, which is the scaling factor for the motion vector.
     __curve_r_point_list (list of float): Convert Temperature (K) to RGB (sRGB) using RGB Curves node - red channel's curve data points.

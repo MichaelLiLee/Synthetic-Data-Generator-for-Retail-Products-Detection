@@ -221,6 +221,7 @@ class YOLOLabeler:
             print(f"Find {obj_name} bbox")
             print(f"Remain Obj Num: {len(self.__obj_name_and_id_dict) - id}")
 
+
     def __get_obj_class_id(self, obj_name):
         """Reference objects yolo class id from attribute-__obj_name_and_class_id_mapping.
 
