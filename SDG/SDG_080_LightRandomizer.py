@@ -36,7 +36,7 @@ class LightRandomizer:
     """ 
 
     def __init__(self,
-                asset_hdri_lighting_folder_path = "C:/Users/user/Documents/project/synthDet/Asset/Lighting/HDRI",
+                asset_hdri_lighting_folder_path = "C:/Users/user/Documents/project/Synthetic-Data-Generator-for-Retail-Products-Detection/Assets/HDRI",
                 hdri_lighting_strength_range = {"min": 0.1 , "max": 2}
                 ):
         self.asset_hdri_lighting_folder_path = asset_hdri_lighting_folder_path

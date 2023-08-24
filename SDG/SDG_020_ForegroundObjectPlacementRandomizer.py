@@ -43,7 +43,7 @@ class ForegroundObjectPlacementRandomizer:
                  num_foreground_object_in_scene_range = {"min": 8 , "max": 20},
                  foreground_area = [2, 1.5, 0.5],
                  foreground_poisson_disk_sampling_radius = 0.3,
-                 asset_foreground_object_folder_path = "C:/Users/user/Documents/project/synthDet/Asset/foreground_object"
+                 asset_foreground_object_folder_path = "C:/Users/user/Documents/project/Synthetic-Data-Generator-for-Retail-Products-Detection/Assets/foreground_object"
                  ):
         self.num_foreground_object_in_scene_range = num_foreground_object_in_scene_range
         self.__num_foreground_object_in_scene = None

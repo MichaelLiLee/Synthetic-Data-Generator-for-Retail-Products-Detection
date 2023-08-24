@@ -1,9 +1,3 @@
-"""Looper
-
-references:
-https://www.w3resource.com/python-exercises/python-basic-exercise-65.php
-"""
-
 # Prevent to create __pycache__ file
 import sys
 sys.dont_write_bytecode = True
@@ -16,6 +10,8 @@ import time
 
 class Looper:
     """ 
+    A class for repeatedly run the file SDG_300_DataGenerator.py in Blender, this class also provide the Estimated time consumption 
+    to generate n synthetic images, and save the current configuration to a txt file.
 
     Attributes
     ----------
@@ -33,14 +29,15 @@ class Looper:
 
     Methods
     -------
-    __create_and_save_logger(): 
+    __create_and_save_logger(): Save the current configuration to a txt file.
     __convert_time(): Converts seconds into days, hours, minutes, and seconds.
-    __caculate_gen_imgs_eta(): 
-    loop(): 
+    __caculate_gen_imgs_eta(): Calculate the time consumption for generating synthetic images.
+    loop(): Repeatedly run the file SDG_300_DataGenerator.py in Blender.
 
     References
     ----------
-
+    [1]Convert to day, hour, minutes and seconds, https://www.w3resource.com/python-exercises/python-basic-exercise-65.php
+    [2]Command Line Arguments, https://docs.blender.org/manual/en/latest/advanced/command_line/arguments.html
 
     """ 
 
@@ -78,9 +75,9 @@ class Looper:
             "saturation_probability": None
         }
 
+
     def __create_and_save_logger(self):
-        """
-        """
+        """Save the current configuration to a txt file."""
         parameter = SDGParameter()
         self.__logger["asset_background_object_folder_path"] = parameter.asset_background_object_folder_path
         self.__logger["asset_foreground_object_folder_path"] = parameter.asset_foreground_object_folder_path
@@ -108,9 +105,9 @@ class Looper:
             for key, value in self.__logger.items():
                 f.write('%s:%s\n' % (key, value))
 
+
     def __convert_time(self, time):
-        """
-        """ 
+        """Converts seconds into days, hours, minutes, and seconds[1].""" 
         day = time // (24 * 3600)
         time = time % (24 * 3600)
         hour = time // 3600
@@ -121,9 +118,9 @@ class Looper:
      
         return "d:h:m:s-> %d:%02d:%02d:%02d" % (day, hour, minutes, seconds)
 
+
     def __caculate_gen_imgs_eta(self):
-        """ 
-        """
+        """Calculate the time consumption for generating synthetic images."""
         time_consume = self.__end_time - self.__start_time
         self.__time_seque.appendleft(time_consume)
         time_list = list(self.__time_seque)
@@ -138,11 +135,12 @@ class Looper:
         gen_n_imgs_time_consume = self.__average_time_consume_per_img * self.__remain_gen_num
         self.__gen_n_imgs_eta = self.__convert_time(time = gen_n_imgs_time_consume)
 
+
     def loop(self):
-        """ 
-        """
+        """Repeatedly run the file SDG_300_DataGenerator.py in Blender."""
         self.__create_and_save_logger()
-        # Passing  gen_num param
+
+        # Passing gen_num param
         parameter = SDGParameter()
         self.__gen_num = parameter.gen_num
 
@@ -158,11 +156,13 @@ class Looper:
             module_path = os.path.dirname(os.path.abspath(__file__))
             data_generator_path = os.path.join(module_path,"SDG_300_DataGenerator.py")
 
-            # Set args
+            # Set args[2]
             args = [
                 blender_exe_path,
-                "--python",
-                data_generator_path
+                "--python", # Run the given Python script file.
+                data_generator_path,
+                "--window-geometry","0","0","100","100", # Open with lower left corner at <sx>, <sy> and width and height as <w>, <h>.
+                "--no-window-focus" # Open behind other windows and without taking focus.
                 ]
 
             # Create new process
@@ -173,7 +173,7 @@ class Looper:
             # Log end time
             self.__end_time = time.time()
 
-            self.___caculate_gen_imgs_eta()
+            self.__caculate_gen_imgs_eta()
 
             print(f"Generate 1 Image ETA: {int(self.__average_time_consume_per_img)} Seconds")
             print(f"Generate 1k Images ETA: {self.__gen_1k_imgs_eta}")
@@ -181,6 +181,7 @@ class Looper:
             print(f"Remain {self.__remain_gen_num} Images Need To Generate, ETA: {self.__gen_n_imgs_eta}")
 
         print(f"Generate {self.__gen_num} Images COMPLERED !!!")
+
 
 if __name__ == '__main__':
     looper = Looper()

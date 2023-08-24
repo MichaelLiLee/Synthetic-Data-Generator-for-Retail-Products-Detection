@@ -1,0 +1,20 @@
+asset_background_object_folder_path:C:/Users/user/Documents/project/Synthetic-Data-Generator-for-Retail-Products-Detection/Assets/background_object
+asset_foreground_object_folder_path:C:/Users/user/Documents/project/Synthetic-Data-Generator-for-Retail-Products-Detection/Assets/foreground_object
+asset_occluder_folder_path:C:/Users/user/Documents/project/Synthetic-Data-Generator-for-Retail-Products-Detection/Assets/occluder
+asset_ambientCGMaterial_folder_path:C:/Users/user/Documents/project/Synthetic-Data-Generator-for-Retail-Products-Detection/Assets/texture
+asset_hdri_lighting_folder_path:C:/Users/user/Documents/project/Synthetic-Data-Generator-for-Retail-Products-Detection/Assets/HDRI
+output_img_path:C:/Users/user/Documents/project/Synthetic-Data-Generator-for-Retail-Products-Detection/gen_data/images
+output_label_path:C:/Users/user/Documents/project/Synthetic-Data-Generator-for-Retail-Products-Detection/gen_data/labels
+num_foreground_object_in_scene_range:{'min': 8, 'max': 20}
+num_occluder_in_scene_range:{'min': 5, 'max': 10}
+max_samples:256
+chromatic_aberration_probability:0.1
+blur_probability:0.1
+motion_blur_probability:0.1
+exposure_probability:0.15
+noise_probability:0.1
+white_balance_probability:0.15
+brightness_probability:0.15
+contrast_probability:0.15
+hue_probability:0.15
+saturation_probability:0.15

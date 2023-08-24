@@ -43,7 +43,7 @@ class OccluderPlacementRandomizer:
                 num_occluder_in_scene_range = {"min": 5 , "max": 10},
                 occluder_area = [1.2, 0.8, 0.4],
                 occluder_poisson_disk_sampling_radius = 0.25,
-                asset_occluder_folder_path = "C:/Users/user/Documents/project/synthDet/Asset/occluder"
+                asset_occluder_folder_path = "C:/Users/user/Documents/project/Synthetic-Data-Generator-for-Retail-Products-Detection/Assets/occluder"
                 ):
         self.num_occluder_in_scene_range = num_occluder_in_scene_range
         self.__num_occluder_in_scene = None

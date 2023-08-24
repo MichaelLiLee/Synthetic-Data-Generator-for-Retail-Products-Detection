@@ -35,7 +35,7 @@ class TextureRandomizer:
 
     """
 
-    def __init__(self, asset_ambientCGMaterial_folder_path = "C:/Users/user/Documents/project/synthDet/Asset/blenderproc_asset/cc_texture"):       
+    def __init__(self, asset_ambientCGMaterial_folder_path = "C:/Users/user/Documents/project/Synthetic-Data-Generator-for-Retail-Products-Detection/Assets/texture"):       
         
         self.asset_ambientCGMaterial_folder_path = asset_ambientCGMaterial_folder_path
         self.__collections_need_assign_material = [bpy.data.collections["OccluderCollection"], bpy.data.collections["BackgroundObjectCollection"]]

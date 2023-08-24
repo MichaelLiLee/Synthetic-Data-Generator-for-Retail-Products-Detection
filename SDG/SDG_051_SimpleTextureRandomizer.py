@@ -32,7 +32,7 @@ class SimpleTextureRandomizer:
     """ 
 
 
-    def __init__(self ,asset_img_texture_path = "C:/Users/user/Documents/project/synthDet/Asset/image_texture"):
+    def __init__(self ,asset_img_texture_path = "C:/Users/user/Documents/project/Synthetic-Data-Generator-for-Retail-Products-Detection/Assets/img_texture"):
         self.asset_img_texture_path = asset_img_texture_path
         self.__collections_need_assign_texture = [bpy.data.collections["OccluderCollection"],
                                                 bpy.data.collections["BackgroundObjectCollection"]]

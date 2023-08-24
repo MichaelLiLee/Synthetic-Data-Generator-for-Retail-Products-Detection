@@ -1,13 +1,4 @@
-""" DataGenerator
-
-reference:
-## prevent create __pycache__ file
-https://stackoverflow.com/questions/50752302/python3-pycache-generating-even-if-pythondontwritebytecode-1
-## Update view layer
-https://blender.stackexchange.com/questions/140789/what-is-the-replacement-for-scene-update
-"""
-
-## Add SDG related python files path to system path
+# Add SDG related python files path to system path
 import sys
 import os
 module_path = os.path.dirname(os.path.abspath(__file__))
@@ -16,7 +7,7 @@ for p in sys.path:
     sys_path_list.append(p)
 if module_path not in sys_path_list:
     sys.path.append(module_path)
-# Prevent to create __pycache__ file
+# Prevent to create __pycache__ file[1]
 sys.dont_write_bytecode = True
 
 import bpy
@@ -33,26 +24,29 @@ from SDG_090_CameraRandomizer import CameraRandomizer
 from SDG_100_YOLOLabeler_IDMask import YOLOLabeler
 from SDG_200_SDGParameter import SDGParameter
 
+
 class DataGenerator:
     """
+    A class that instantiates all components of the Synthetic Data Generation (SDG) process, updates instance attributes, 
+    and then calls methods in a specific sequence to complete the entire process of generating synthetic data.
 
     Methods
     -------
-    gen_one_data(): 
+    gen_one_data(): Generates one synthetic data.
 
     References
     ----------
-
+    [1]prevent create __pycache__ file, https://stackoverflow.com/questions/50752302/python3-pycache-generating-even-if-pythondontwritebytecode-1
+    [2]Update view layer, https://blender.stackexchange.com/questions/140789/what-is-the-replacement-for-scene-update
 
     """
     
     def gen_one_data(self):
-        """ 
-        """ 
-        # SDG component_initialize
+        """ Generates one synthetic data.""" 
+        # Instantiating SDG components
         initializer = Initializer()
         parameter = SDGParameter()
-        initializer.init()
+        initializer.init() # Need to initialize the blender scene at first.
         background_object_placement_randomizer = BackgroundObjectPlacementRandomizer()
         foreground_object_placement_randomizer = ForegroundObjectPlacementRandomizer()
         occluder_placement_randomizer = OccluderPlacementRandomizer()
@@ -64,7 +58,7 @@ class DataGenerator:
         camera_randomizer = CameraRandomizer()
         yolo_labeler = YOLOLabeler()
 
-        print("Component Initialize Completed!!!")
+        print("Components Initialize Completed!!!")
 
         # Passing params
         background_object_placement_randomizer.background_poisson_disk_sampling_radius = parameter.background_poisson_disk_sampling_radius
@@ -119,13 +113,13 @@ class DataGenerator:
         unified_rotation_randomizer.unified_rotation_randomize()
         light_randomizer.light_randomize()
         camera_randomizer.camera_randomize()
-        bpy.data.scenes["Scene"].view_layers.update()# Update view layer
+        bpy.data.scenes["Scene"].view_layers.update() # Update view layer[2]
         yolo_labeler.get_and_save_yolo_label()
 
         print("One Data Generating Cylce Completed!!!")
         sys.exit()
 
+
 if __name__ == '__main__':
     datagen = DataGenerator()
     datagen.gen_one_data()
-

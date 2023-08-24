@@ -39,7 +39,7 @@ class BackgroundObjectPlacementRandomizer:
     """
 
     def __init__(self, 
-                asset_background_object_folder_path = 'C:/Users/user/Documents/project/synthDet/Asset/background_object',
+                asset_background_object_folder_path = 'C:/Users/user/Documents/project/Synthetic-Data-Generator-for-Retail-Products-Detection/Assets/background_object',
                 background_poisson_disk_sampling_radius = 0.2
                 ):
         self.__background_plane_size = [3.2,2.4] # x, y 

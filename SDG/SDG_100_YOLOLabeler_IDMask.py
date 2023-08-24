@@ -44,8 +44,8 @@ class YOLOLabeler:
 
     """ 
     def __init__(self,
-                 output_img_path = "C:/Users/user/Documents/project/synthDet/gen_data_2/images",
-                 output_label_path = "C:/Users/user/Documents/project/synthDet/gen_data_2/labels"
+                 output_img_path = "C:/Users/user/Documents/project/Synthetic-Data-Generator-for-Retail-Products-Detection/gen_data/images",
+                 output_label_path = "C:/Users/user/Documents/project/Synthetic-Data-Generator-for-Retail-Products-Detection/gen_data/labels"
                  ):
                  
         self.output_img_path = output_img_path
