@@ -4,17 +4,19 @@
 
 # 應用合成資料訓練物件偵測模型進行零售商品辨識 
 
+訓練卷積神經網絡模型需要大量標記的訓練資料才能獲得良好的性能，而訓練資料的收集和標記是一個昂貴、耗時且容易出錯的過程。克服這一限制的一種有前途的方法是使用電腦合成影像(Computer Generated Imagery, CGI)技術建立一個虛擬環境來生成合成資料與進行自動標記。
+
+## **1. 專案概述** 
+
 Synthetic Data Generator for Retail Products Detection是一個開源專案，旨在以Blender與Python建構一個合成影像資料生成管道，生成的合成資料被用來訓練YOLOv5模型並應用於零售商品辨識用途。此專案利用Blender生成了包含63種零售商品(例如: 麥片盒、可樂鋁罐等)的隨機化合成圖像，並導出對應的資料標籤與標註(2D偵測框，YOLO格式)。
 
 本開源專案提供了以下資源:
-* 數位資產 - 63種零售商品的3D模型(.blend)，可由此Google Drive下載。
+* 數位資產 - 63種零售商品的3D模型(.blend)，可由此[Google Drive]()下載。
 * 數位資產 - 1369種PBR材質(.jpg)，這些材質來自ambientCG網站，可由此Google Drive下載。
 * 數位資產 - 561種HDRI照明貼圖(.exr)，這些照明貼圖來自PolyHaven網站，可由此Google Drive下載。
 * 數位資產 - 充當背景與干擾物的無材質幾何3D模型(.blend)，可由此Google Drive下載。
 * 程式碼 - 合成影像資料生成器(SDG)，一個以Blender與Python建構的合成影像資料生成管道。
-* 真實零售商品影像資料集 - 1267張真實零售商品影像資料集，此資料集來自UnityGroceries-Real Dataset，其資料標籤為YOLO格式，可由此Google Drive下載。
-
-## **1. 專案概述** 
+* 真實零售商品影像資料集 - 1267張真實零售商品影像資料集，此資料集來自UnityGroceries-Real Dataset，其資料標籤為YOLO格式，可由此[Google Drive](https://drive.google.com/file/d/1RPFCBf4z7A4NkskV6Jn1MYwirZqf_qtR/view?usp=sharing)下載。
 
 
 ## **2. 合成資料生成管道介紹**
@@ -36,6 +38,18 @@ Synthetic Data Generator for Retail Products Detection是一個開源專案，�
 </p>
 
 ## **3. 數位資產配置與生成管道參數設定** 
+
+<p align="center">
+<img  src="docs/images/retail_model_63.png">
+</p>
+
+<p align="center">
+<img  src="docs/images/HDRI.png">
+</p>
+
+<p align="center">
+<img  src="docs/images/ambientCG.png">
+</p>
 
 ```python
 class SDGParameter:
