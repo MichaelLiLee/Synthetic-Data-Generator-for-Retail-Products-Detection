@@ -3,6 +3,7 @@ import math
 import random
 from mathutils import Euler
 
+
 class RotationRandomizer:
     """
     A randomizer class which randomly rotates the background shapes and occluder objects.

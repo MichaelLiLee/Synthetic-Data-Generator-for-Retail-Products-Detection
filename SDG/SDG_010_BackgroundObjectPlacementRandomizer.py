@@ -33,7 +33,7 @@ class BackgroundObjectPlacementRandomizer:
     __error_check(): Check assigned background object assets folder path isn't empty.
     __load_object(): Load asset from other blendfile to the current blendfile.
     __posson_disc_sampling(): Using poisson disk sampling algorithm to generate the sampling.
-    __import_background_object_asset(): Import a number of __n_particle background objects into current blender scene.
+    __import_background_object_asset(): Import __n_particle background objects into the current Blender scene.
     background_object_placement_randomize(): Generate background.
 
     """

@@ -1,17 +1,10 @@
-""" LightRandomizer
-
-The Scene contains four directional lights, three of which light all objects, and one lights the background only.
-The background light has a very high intensity range and only turns on with a small probability.
-This Randomizer is tasked with randomizing the intensity and color of all lights, as well as deciding whether the intense background light should be on.
-
-"""
-
 import bpy
 import os
 from glob import glob
 import random
 import math
 import sys
+
 
 class LightRandomizer:
     """ 

@@ -3,6 +3,7 @@ import os
 import random
 import sys
 
+
 class TextureRandomizer:
     """
     A randomizer class which randomly select different PBR material and apply it to the surface of the objects.

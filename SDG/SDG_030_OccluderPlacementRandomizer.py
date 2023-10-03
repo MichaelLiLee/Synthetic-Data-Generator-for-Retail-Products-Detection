@@ -34,7 +34,7 @@ class OccluderPlacementRandomizer:
     __error_check(): Check assigned occlusion object assets folder path isn't empty.
     __load_object(): Load asset from other blendfile to the current blendfile.
     __posson_disc_sampling(): Using poisson disk sampling algorithm to generate the sampling.
-    __import_occluder_asset(): Import a number of __n_particle occlusion objects into current blender scene.
+    __import_occluder_asset(): Import __n_particle occluder objects into the current Blender scene.
     occluder_placement_randomize(): Generate occlusion.
 
     """ 

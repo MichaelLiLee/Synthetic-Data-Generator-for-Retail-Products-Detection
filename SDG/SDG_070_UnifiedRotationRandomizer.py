@@ -3,6 +3,7 @@ import math
 import random
 from mathutils import Euler
 
+
 class UnifiedRotationRandomizer:
     """
     A randomizer class which assigns a random rotation to all foreground (retail products) objects.

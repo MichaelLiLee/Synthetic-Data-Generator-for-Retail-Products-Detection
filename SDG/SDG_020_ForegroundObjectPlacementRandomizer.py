@@ -23,6 +23,7 @@ class ForegroundObjectPlacementRandomizer:
     num_foreground_object_in_scene_range (dict of str: int): The distribution of the number of retail items within the blender scene.
     __num_foreground_object_in_scene (int): The number of retail items within the blender scene.
     foreground_area (list of float): Spatial distribution area of foreground objects.
+    __foreground_domain_size (numpy.ndarray): Spatial distribution area of foreground objects(convert foreground_area to ndarray).
     foreground_poisson_disk_sampling_radius (float): Foreground objects separation distance.
     asset_foreground_object_folder_path (str): The path to foreground object assets.
     __foreground_object_collection (bpy.types.Collection): The blender collection data-block of foreground objects.
@@ -34,7 +35,7 @@ class ForegroundObjectPlacementRandomizer:
     __error_check(): Check assigned background object assets folder path isn't empty.
     __load_object(): Load asset from other blendfile to the current blendfile.
     __posson_disc_sampling(): Using poisson disk sampling algorithm to generate the sampling.
-    __import_foreground_object_asset(): Import a number of __n_particle foreground objects into current blender scene.
+    __import_foreground_object_asset(): Import __n_particle foreground objects into the current Blender scene.
     foreground_object_placement_randomize(): Generate foreground.
 
     """

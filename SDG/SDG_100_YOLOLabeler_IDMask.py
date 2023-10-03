@@ -3,6 +3,7 @@ import numpy as np
 import datetime
 import os
 
+
 class YOLOLabeler:
     """
     A class which render the current blender scene, outputs the synthetic image(PNG format) and generate the foreground objects annotation/labeling 

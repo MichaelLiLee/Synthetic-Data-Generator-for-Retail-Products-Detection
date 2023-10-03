@@ -4,6 +4,7 @@ from glob import glob
 import random
 import sys
 
+
 class SimpleTextureRandomizer:
     """
     A randomizer class which randomly select different image textures from Freiburg Groceries dataset and apply it to the surface of the objects.
