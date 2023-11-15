@@ -8,7 +8,7 @@ Training convolutional neural network models requires a substantial amount of la
 ## Installation (Windows 10)
 
 ### Step1: Install Blender 3.6 LST
-Visit the [Blender 3.6 LTS web page](https://www.blender.org/download/lts/3-6/) and click on the [Windows – Installer](https://www.blender.org/download/release/Blender3.6/blender-3.6.5-windows-x64.msi) link to initiate the download.
+Visit the [Blender 3.6 LTS web page](https://www.blender.org/download/lts/3-6/) and click on the [Windows – Installer](https://www.blender.org/download/release/Blender3.6/blender-3.6.5-windows-x64.msi) link to initiate the download. Once you have downloaded, install Blender in your PC.
 
 ### Step2: Download this repo
 Download this repo via git
