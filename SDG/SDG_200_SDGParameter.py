@@ -54,13 +54,13 @@ class SDGParameter:
     """ 
 
     def __init__(self):
-        self.gen_num = 2
+        self.gen_num = 10
         self.blender_exe_path = "C:/program Files/Blender Foundation/Blender 3.3/blender"
-        self.asset_background_object_folder_path = "C:/Users/user/Documents/project/Synthetic-Data-Generator-for-Retail-Products-Detection/Assets/background_object"
+        self.asset_background_object_folder_path = "C:/Users/user/Documents/project/Synthetic-Data-Generator-for-Retail-Products-Detection/Assets/background_occluder_object"
         self.asset_foreground_object_folder_path = "C:/Users/user/Documents/project/Synthetic-Data-Generator-for-Retail-Products-Detection/Assets/foreground_object"
-        self.asset_ambientCGMaterial_folder_path = "C:/Users/user/Documents/project/Synthetic-Data-Generator-for-Retail-Products-Detection/Assets/texture"
-        self.asset_hdri_lighting_folder_path = "C:/Users/user/Documents/project/Synthetic-Data-Generator-for-Retail-Products-Detection/Assets/HDRI"
-        self.asset_occluder_folder_path = "C:/Users/user/Documents/project/Synthetic-Data-Generator-for-Retail-Products-Detection/Assets/occluder"
+        self.asset_ambientCGMaterial_folder_path = "C:/Users/user/Documents/project/Synthetic-Data-Generator-for-Retail-Products-Detection/Assets/pbr_texture"
+        self.asset_hdri_lighting_folder_path = "C:/Users/user/Documents/project/Synthetic-Data-Generator-for-Retail-Products-Detection/Assets/hdri_lighting"
+        self.asset_occluder_folder_path = "C:/Users/user/Documents/project/Synthetic-Data-Generator-for-Retail-Products-Detection/Assets/background_occluder_object"
         self.output_img_path = "C:/Users/user/Documents/project/Synthetic-Data-Generator-for-Retail-Products-Detection/gen_data/images"
         self.output_label_path = "C:/Users/user/Documents/project/Synthetic-Data-Generator-for-Retail-Products-Detection/gen_data/labels"
         self.background_poisson_disk_sampling_radius = 0.2
@@ -76,7 +76,7 @@ class SDGParameter:
         self.hdri_lighting_strength_range = {"min": 0.2 , "max": 2.2}
         self.img_resolution_x = 1728
         self.img_resolution_y = 1152
-        self.max_samples = 256
+        self.max_samples = 128
         self.chromatic_aberration_probability = 0.1
         self.blur_probability = 0.1
         self.motion_blur_probability = 0.1

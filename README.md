@@ -1,139 +1,129 @@
-<p align="center">
-<img src="docs/images/retail_top.png" width="5000">
-</p>
+# Synthetic Data Generator for Retail Products Detection
+Training convolutional neural network models requires a substantial amount of labeled training data to achieve good performance. However, the collection and annotation of training data is a costly, time-consuming, and error-prone process. One promising approach to overcome this limitation is to use Computer Generated Imagery (CGI) technology to create a virtual environment for generating synthetic data and conducting automatic labeling.
 
-# 應用合成資料訓練物件偵測模型進行零售商品辨識 
+"Synthetic Data Generator for Retail Products Detection" is an open-source project aimed at constructing a synthetic image data generation pipeline using Blender and Python. The generated synthetic data is utilized for training YOLOv5 models and applied to the task of recognizing retail products. This project leverages Blender to produce randomized synthetic images containing 63 types of retail products (e.g., cereal boxes, soda cans, etc.), and exports corresponding data labels and annotations (2D detection boxes in YOLO format).
 
-訓練卷積神經網絡模型需要大量標記的訓練資料才能獲得良好的性能，而訓練資料的收集和標記是一個昂貴、耗時且容易出錯的過程。克服這一限制的一種有前途的方法是使用電腦合成影像(Computer Generated Imagery, CGI)技術建立一個虛擬環境來生成合成資料與進行自動標記。
+[![Synthetic-Data-Generator-for-Retail-Products-Detection](docs/images/YoutubePage.png)](https://youtu.be/BuL7RroTG7s)
 
-## **1. 專案概述** 
+## Installation (Windows 10)
 
-Synthetic Data Generator for Retail Products Detection是一個開源專案，旨在以Blender與Python建構一個合成影像資料生成管道，生成的合成資料被用來訓練YOLOv5模型並應用於零售商品(圖 1)辨識用途。此專案利用Blender生成了包含63種零售商品(例如: 麥片盒、可樂鋁罐等)的隨機化合成圖像，並導出對應的資料標籤與標註(2D偵測框，YOLO格式)。
+#### Step1: Install Blender 3.6 LST
+Visit the [Blender 3.6 LTS web page](https://www.blender.org/download/lts/3-6/) and click on the [Windows – Installer](https://www.blender.org/download/release/Blender3.6/blender-3.6.5-windows-x64.msi) link to initiate the download.
 
-本專案包含了以下資源:
-* 數位資產 - 63種零售商品的3D模型(.blend)，可由此[Google Drive]()下載。
-* 數位資產 - 1369種PBR材質(.jpg)，這些材質來自ambientCG網站，可由此Google Drive下載。
-* 數位資產 - 561種HDRI照明貼圖(.exr)，這些照明貼圖來自PolyHaven網站，可由此Google Drive下載。
-* 數位資產 - 充當背景與干擾物的無材質幾何3D模型(.blend)，可由此Google Drive下載。
-* 程式碼 - 合成影像資料生成器(SDG)，一個以Blender與Python建構的合成影像資料生成管道。
-* 真實零售商品影像資料集 - 1267張真實零售商品影像資料集，此資料集來自UnityGroceries-Real Dataset，其資料標籤為YOLO格式，可由此[Google Drive](https://drive.google.com/file/d/1RPFCBf4z7A4NkskV6Jn1MYwirZqf_qtR/view?usp=sharing)下載。
+#### Step2: Download this repo
+Download this repo via git
+```
+git clone https://github.com/MichaelLiLee/Synthetic-Data-Generator-for-Retail-Products-Detection.git
+```
+or download via ZIP file.
 
-<p align="center">
-<img  src="docs/images/retail_real_02.png">
-</p>
+#### Step3: Download assets
 
-*圖 1 UnityGroceriesReal Dataset 圖例*
+Before using the synthetic data generator to generate data, it is necessary to prepare digital assets for creating virtual scenes.These digital assets include retail product models, background and occluder 3d models, PBR materials, and lighting.
 
+In this project, the required digital assets to be prepared are as follows:
 
-## **2. 合成資料生成管道介紹**
-本專案產生合成資料的流程，如圖所示，首先於虛擬場景中生成一面由隨機幾何物體與紋理的背景，接著隨機添加零售商品與干擾/遮蔽物物體至虛擬場景內，並隨機分配物體的姿態與位置，接著向虛擬場景添加隨機照明，並隨機挑選照明的強度、角度，接著隨機產生運動模糊、調整對比度、飽和度等視覺效果，最後渲染影像並產生自動物件標記。
+1. 3D models of 63 retail products(.blend file), You can download from this [Google Drive Link](https://drive.google.com/file/d/1nnOdlqenK0gTdRw-_Wlto2il7JkuNLdi/view?usp=sharing).
+<br/>
+2. 3D Models with No Texture Serving as background and occluder (.blend file), You can download from this [Google Drive Link](https://drive.google.com/file/d/1ApTrFn1pGWKm97OosuGLx8gsJbc6-Dw8/view?usp=sharing).
+<br/>
+3. 10 PBR materials from ambientCG, You can download from this [Google Drive Link](https://drive.google.com/file/d/1dKtK0zv47-Ic_nzYlLgsiyHGkZLweWoQ/view?usp=sharing). You can also download more materials manually from the [AmbientCG](https://ambientcg.com/list?type=Material,Atlas,Decal) website. Alternatively, you can use this [python script](https://github.com/DLR-RM/BlenderProc/blob/main/blenderproc/scripts/download_cc_textures.py) from [BlenderProc](https://github.com/DLR-RM/BlenderProc) to download them.
+<br/>
+4. 10 HDRIs from PolyHaven, You can download from this [Google Drive Link](https://drive.google.com/file/d/14Up5S2q7sx8VhN6qxADd1x80r3kTm3VY/view?usp=sharing). You can also download more HDRIs manually from the [PolyHaven](https://polyhaven.com/hdris) website. Alternatively, you can use this [python script](https://github.com/DLR-RM/BlenderProc/blob/main/blenderproc/scripts/download_haven.py) from [BlenderProc](https://github.com/DLR-RM/BlenderProc) to download them.
 
-<p align="center">
-<img  src="docs/images/SDG_flow.png">
-</p>
+Once you have downloaded these digital assets, please place the assets in the corresponding folders in the following order:
 
-*圖 2 合成資料生成管道的流程*
+ retail products(.blend) >> Assets/foreground_object
+ background and occluder(.blend) >> Assets/background_occluder_object
+ pbr_texture(folders contain a series of jpg images) >> Assets/pbr_texture
+ HDRIs(.exr) >> Assets/hdri_lighting
 
-<p align="center">
-<img src="docs/images/retail_render_scene.png" width="500"> <img  src="docs/images/retail_generate_flow.gif" width="300">
-</p>
-
-*圖 3、4 於Blender中的虛擬場景*
-
-#### 背景物體生成
-虛擬場景的背景產生方式，是從一組包含數種簡單幾何形狀(例如:立方體、圓柱體)的 3D 模型中隨機選取，並填充至虛擬場景的背景，形成一面背景牆。3D 模型的放置位置與彼此間的距離，由給定平面範圍的泊松分布採樣產生，接著隨機旋轉背景物體的姿態。接著設定這些放置於虛擬場景中充當背景物體的表面紋理，表面紋理來自於 1369 種 PBR 紋理材質，隨機選取這些紋理材質中的一個子集並添加至背景物體的表面。
-
-#### 前景物體生成
-虛擬場景的前景產生方式，是從 63 個零售商品的 3D 資產中隨機選取一個子集，並將這些 3D 資產隨機放置於背景物體上方的區域，前景物體的放置位置與彼此間的距離，由給定空間範圍的泊松分布採樣產生。
-
-<p align="center">
-<img  src="docs/images/retail_model_63.png">
-</p>
-
-*圖 5 63種零售商品之3D模型*
-
-#### 干擾/遮擋物生成
-虛擬場景的干擾/遮擋物產生方式，是從一組包含數種簡單幾何形狀(例如:立方體、圓柱體)的 3D 模型中隨機選取，並將這些干擾/遮擋物隨機放置於前景物體上方的區域，遮擋物的放置位置與彼此間的距離，由給定空間範圍的泊松分布採樣產生。接著設定這些放置於虛擬場景中充當背景物體的表面紋理，表面紋理來自於 1369 種 PBR紋理材質，隨機選取這些紋理材質中的一個子集並添加至背景物體的表面。
-
-#### 燈光照明生成
-虛擬場景的燈光照明產生方式，是隨機從 581 個室內與室外 HDRI 選取一個做為場景照明，並隨機旋轉燈光的角度。
-
-<p align="center">
-<img  src="docs/images/HDRI.png" width="600"> <img  src="docs/images/ambientCG.png" width="900">
-</p>
-
-*圖 6、7 作為環境照明的hdri照明貼圖與作為背景與干擾物的pbr材質*
+ #### Step4: Setting paths
+After completing the aforementioned steps, it is necessary to set several parameters related to the path in the`SDG_200_SDGParameter.py`file:
+1. `blender_exe_path` : The path to the blender executable(default: C:/program Files/Blender Foundation/Blender 3.x/blender).
+2. `asset_background_object_folder_path` : The path to background object assets(default: Assets/background_occluder_object).
+3. `asset_foreground_object_folder_path` : The path to foreground object assets(default: Assets/foreground_object).
+4. `asset_ambientCGMaterial_folder_path` : The path to the downloaded ambientCG PBR materials(default: Assets/pbr_texture).
+5. `asset_hdri_lighting_folder_path` : The path to the downloaded Poly Haven HDRIs(default: Assets/pbr_texture).
+6. `asset_occluder_folder_path` : The path to occlusion object assets(default: Assets/background_occluder_object).
+7. `output_img_path` : The path where rendered images will be saved(default: gen_data/images).
+8. `output_label_path` : The path where YOLO format bounding box annotations will be saved(default: gen_data/labels).
 
 
-#### 圖像渲染
-本專案使用 Cycles 渲染器渲染虛擬相機於虛擬場景所拍攝的影像，Cycles 是Blender 軟體的一個路徑追蹤渲染器，可以產生非常逼真的圖像效果。
+#### Step5: Test installation was successful - Run SDG to generate synthetic data
+After completing the paths settings, execute the `SDG_400_Looper.py` file in vscode.
+<img src="./docs/images/vscode.gif" width="1000">
 
-#### 相機效果
-為了增加合成資料的多樣性，以及模擬真實的相機效果，相機效果程序如圖8所示，會使用多種相機效果擴增方法，以模擬影像形成和後處理過程中每個階段可能發生的視覺效果。此程序會隨機對渲染影像產生色相差、模糊、運動模糊、曝光、雜訊，以及隨機調整渲染影像的白平衡、色相、對比度、飽和度。此程序使用 Blender 中的合成(Compositing)編輯器所實現。
-<p align="center">
-<img  src="docs/images/camera_effect.png" width="2000">
-</p>
+When rendering images and generating data labels, image and label files will be generated in the`gen_data`folder. 
+<img src="./docs/images/gen_data.PNG" width="1000">
 
-*圖 8 相機效果生成的流程*
+## Usage
 
-#### 產生檢測框標記
-在完成合成資料的渲染與相機效果程序後，需要將虛擬場景中前景物體的 2D 檢測框與人體關鍵點標記出來。圖9顯示了檢測框產生的流程，本研究使用 blender 內建的 IDMask 功能，產生個別前景物體的影像遮罩(image mask)，並使用影像遮罩計算 2D 檢測框在影像中的座標，最後輸出符合 YOLO 物件偵測器模型訓練所需的標記檔案，其格式為.txt。
+#### 1.Setting parameters in `SDG_200_SDGParameter.py`
 
-<p align="center">
-<img  src="docs/images/labeling.png">
-</p>
-
-*圖 9 零售商品辨識合成資料影像及標記範例*
-
-<p align="center">
-<img  src="docs/images/retail_synth_examples.png">
-</p>
-
-*圖 10 零售商品辨識合成資料影像及標記範例*
-
-## **3. 合成資料生成管道參數設定** 
+This python file contains a configuration class to configure this blender-based synthetic data generator pipeline, The following parameters can be adapted to your specific application.
 
 <table>
     <tr>
-        <th>參數類別</th>
-        <th>參數名稱</th>
-        <th>分佈範圍</th>
+        <th>Category</th>
+        <th>Parameter</th>
+        <th>Description</th>
+        <th>Distribution</th>
     </tr>
-    <tr><td align="center" rowspan="14">3D物體</td><td>構成背景的3D模型集合</td><td>一組幾何形狀的3D模型(10種)</td></tr>
-    <tr><td>產生背景物體位置的泊松圓盤採樣半徑</td><td>常數(0.2)</td></tr>
-    <tr><td>背景物體尺寸的縮放比例</td><td>常數(2.5)</td></tr>
-    <tr><td>遮擋物的3D模型集合</td><td>一組幾何形狀的3D模型</td></tr>
-    <tr><td>遮擋物分布於虛擬場景中的範圍</td><td>笛卡兒坐標[均勻分布(-0.6, 0.6), 均勻分布(-0.4, 0.4), 均勻分布(1.5, 1.9)]</td></tr>
-    <tr><td>產生遮擋物位置的泊松圓盤採樣半徑</td><td>常數(0.25)</td></tr>
-    <tr><td>遮擋物出現於虛擬場景內的數量</td><td>均勻分布(5, 10)</td></tr>
-    <tr><td>遮擋物物體尺寸的縮放比例</td><td>均勻分布(0.5, 1.5)</td></tr>
-    <tr><td>零售商品分布於虛擬場景中的範圍</td><td>笛卡兒坐標[均勻分布(-1.25, 1.25), 均勻分布(-0.75, 0.75), 均勻分布(0.5, 1)]</td></tr>
-    <tr><td>產產生前景物體位置的泊松圓盤採樣半徑</td><td>常數(0.3)</td></tr>
-    <tr><td>前景物體出現於虛擬場景內的數量</td><td>均勻分布(8, 20)</td></tr>
-    <tr><td>前景物體尺寸的縮放比例</td><td>均勻分布(0.5, 2.5)</td></tr>
-    <tr><td>干擾物與背景物體之姿態旋轉角度</td><td>歐拉角[均勻分布(0, 360), 均勻分布(0, 360), 均勻分布(0, 360)]</td></tr>
-    <tr><td>零售商品之統一姿態旋轉角度</td><td>歐拉角[均勻分布(0, 360), 均勻分布(0, 360), 均勻分布(0, 360)]</td></tr>
-    <tr><td align="center" >紋理材質</td><td>遮蔽/干擾物與背景物體之紋理材質</td><td>一組PBR材質(1369種)</td></tr>
-    <tr><td align="center" rowspan="3">環境照明</td><td>HDRI環境照明</td><td>一組HDRI照明貼圖(561種)</td></tr>
-    <tr><td>照明強度</td><td>均勻分佈(0.2, 2.2)</td></tr>
-    <tr><td>照明旋轉角度</td><td>歐拉角[均勻分布(-30, 120), 均勻分布(-30, 30), 均勻分布(0, 360)]</td></tr>
-    <tr><td align="center" rowspan="12">相機與後處理</td><td>虛擬相機鏡頭焦距</td><td>常數(35)</td></tr>
-    <tr><td>影像解析度</td><td>零售商品辨識:1728*1152</td></tr>
-    <tr><td>鏡頭色差效果</td><td>均勻分布(0.1, 1)</td></tr>
-    <tr><td>模糊效果</td><td>均勻分布(2, 4)</td></tr>
-    <tr><td>運動模糊效果</td><td>均勻分布(2, 7)</td></tr>
-    <tr><td>曝光效果</td><td>均勻分布(-0.5, 2)</td></tr>
-    <tr><td>椒鹽雜訊效果</td><td>均勻分布(1.6, 1.8)</td></tr>
-    <tr><td>影像白平衡調整</td><td>均勻分布(3500, 9500)</td></tr>
-    <tr><td>影像亮度調整</td><td>均勻分布(-1, 1)</td></tr>
-    <tr><td>影像對比度調整</td><td>均勻分布(-1, 3)</td></tr>
-    <tr><td>影像飽和度調整</td><td>均勻分布(0.75, 1.25)</td></tr>
-    <tr><td>影像色相調整</td><td>均勻分布(0.45, 0.55)</td></tr>
-
+    <tr><td align="center" rowspan="1">Dataset size</td><td>gen_num</td><td>The quantity of synthetic images needed to be generated.</td><td>Constant(10)</td></tr>
+    <tr><td align="center" rowspan="15">3D Object</td><td>asset_background_object_folder_path</td><td>A set of 3D models containing various simple geometric shapes such as cubes and cylinders.</td><td>A set of 3d model assets(10)</td></tr>
+    <td>background_poisson_disk_sampling_radius</td><td>Background objects separation distance.</td><td>Constant(0.2)</td></tr>
+    <td>bg_obj_scale_ratio_range</td><td>The distribution of the scale ratio of background objects within the blender scene.</td><td>Constant(2.5)</td></tr>
+    <td>asset_occluder_folder_path</td><td>A set of 3D models containing various simple geometric shapes such as cubes and cylinders.</td><td>A set of 3d model assets(10)</td></tr>
+    <td>occluder_area</td><td>Spatial distribution area of occlusion objects.</td><td>Cartesian[Uniform(-0.6, 0.6), Uniform(-0.4, 0.4), Uniform(1.5, 1.9)]</td></tr>
+    <td>occluder_poisson_disk_sampling_radius</td><td>Occlusion objects separation distance.</td><td>Constant(0.25)</td></tr>
+    <td>num_occluder_in_scene_range</td><td>The distribution of the number of occlusion objects within the blender scene.</td><td>Uniform(5, 10)</td></tr>
+    <td>occluder_scale_ratio_range</td><td>The distribution of the scale ratio of occluder objects within the blender scene.</td><td>Uniform(0.5, 2)</td></tr>
+    <td>asset_foreground_object_folder_path</td><td>A set of 63 retail items 3D assets.</td><td>A set of 3d model assets(63)</td></tr>
+    <td>foreground_area</td><td>Spatial distribution area of foreground objects.</td><td>Cartesian[Uniform(-1.25, 1.25), Uniform(-0.75, 0.75), Uniform(0.5, 1)]</td></tr>
+    <td>foreground_poisson_disk_sampling_radius</td><td>Foreground objects separation distance.</td><td>Constant(0.3)</td></tr>
+    <td>num_foreground_object_in_scene_range</td><td>The distribution of the number of retail items within the blender scene.</td><td>Uniform(8, 20)</td></tr>
+    <td>fg_obj_scale_ratio_range</td><td>The distribution of the scale ratio of foreground objects within the blender scene.</td><td>Uniform(0.5, 2.2)</td></tr>
+    <td>-</td><td>Random rotation angle to background and occluder objects.</td><td>Euler[Uniform(0, 360), Uniform(0, 360), Uniform(0, 360)]</td></tr>
+    <td>-</td><td>Random unified rotation angle to all foreground (retail products) objects.</td><td>Euler[Uniform(0, 360), Uniform(0, 360), Uniform(0, 360)]</td></tr>
+    <tr><td align="center" rowspan="1">Texture</td><td>asset_ambientCGMaterial_folder_path</td><td>A set of PBR materials that are randomly applied to the surfaces of the background and occluder objects</td><td>A set of PBR texture assets(10)</td></tr>
+    <tr><td align="center" rowspan="3">Environment Lighting</td><td>asset_hdri_lighting_folder_path</td><td>A set of high dynamic range images (HDRI) for scene lighting.</td><td>A set of hdri assets(10)</td></tr>
+    <tr><td>hdri_lighting_strength_range</td><td>The distribution of the strength factor for the intensity of the HDRI scene light.</td><td>Uniform(0.1, 2.2)</td></tr>
+    <tr><td>-</td><td>Randomly rotate HDRI map.</td><td>Euler[Uniform(-30, 120), Uniform(-30, 30), Uniform(0, 360)]</td></tr>
+    <tr><td align="center" rowspan="24">Camera & Post-processing</td><td>-</td><td>Perspective Camera focal length value in millimeters.</td><td>Constant(35)</td></tr>
+    <tr><td>img_resolution_x</td><td>Number of horizontal pixels in the rendered image.</td><td>Constant(1728)</td></tr>
+    <tr><td>img_resolution_y</td><td>Number of vertical pixels in the rendered image.</td><td>Constant(1152)</td></tr>
+    <tr><td>max_samples</td><td>Number of samples to render for each pixel.</td><td>Constant(128)</td></tr>
+    <tr><td>chromatic_aberration_value_range</td><td>The distribution of the value of Lens Distortion nodes input-Dispersion, which simulates chromatic aberration.</td><td>Uniform(0.1, 1)</td></tr>
+    <tr><td>blur_value_range</td><td>The distribution of the value of Blur nodes input-Size, which controls the blur radius values.</td><td>Uniform(2, 4)</td></tr>
+    <tr><td>motion_blur_value_range</td><td>The distribution of the value of Vector Blur nodes input-Speed, which controls the direction of motion.</td><td>Uniform(2, 7)</td></tr>
+    <tr><td>exposure_value_range</td><td>The distribution of the value of Exposure nodes input-Exposure, which controls the scalar factor to adjust the exposure.</td><td>Uniform(-0.5, 2)</td></tr>
+    <tr><td>noise_value_range</td><td>The distribution of the value of brightness of the noise texture.</td><td>Uniform(1.6, 1.8)</td></tr>
+    <tr><td>white_balance_value_range</td><td>The distribution of the value of WhiteBalanceNode input-ColorTemperature, which adjust the color temperature.</td><td>Uniform(3500, 9500)</td></tr>
+    <tr><td>brightness_value_range</td><td>The distribution of the value of Bright/Contrast nodes input-Bright, which adjust the brightness.</td><td>Uniform(-1, 1)</td></tr>
+    <tr><td>contrast_value_range</td><td>The distribution of the value of Bright/Contrast nodes input-Contrast, which adjust the contrast.</td><td>Uniform(-1, 5)</td></tr>
+    <tr><td>hue_value_range</td><td>The distribution of the value of Hue Saturation Value nodes input-Hue, which adjust the hue.</td><td>Uniform(0.45, 0.55)</td></tr>
+    <tr><td>saturation_value_range</td><td>The distribution of the value of Hue Saturation Value nodes input-Saturation, which adjust the saturation.</td><td>Uniform(0.75, 1.25)</td></tr>
+    <tr><td>chromatic_aberration_probability</td><td>Probability of chromatic aberration effect being enabled.</td><td>P(enabled) = 0.1, P(disabled) = 0.9</td></tr>
+    <tr><td>blur_probability</td><td>Probability of blur effect being enabled.</td><td>P(enabled) = 0.1, P(disabled) = 0.9</td></tr>
+    <tr><td>motion_blur_probability</td><td>Probability of motion blur effect being enabled.</td><td>P(enabled) = 0.1, P(disabled) = 0.9</td></tr>
+    <tr><td>exposure_probability</td><td>Probability of exposure adjustment being enabled.</td><td>P(enabled) = 0.15, P(disabled) = 0.85</td></tr>
+    <tr><td>noise_probability</td><td>Probability of noise effect being enabled.</td><td>P(enabled) = 0.1, P(disabled) = 0.9</td></tr>
+    <tr><td>white_balance_probability</td><td>Probability of white balance adjustment being enabled.</td><td>P(enabled) = 0.15, P(disabled) = 0.85</td></tr>
+    <tr><td>brightness_probability</td><td>Probability of brightness adjustment being enabled.</td><td>P(enabled) = 0.15, P(disabled) = 0.85</td></tr>
+    <tr><td>contrast_probability</td><td>Probability of contrast adjustment being enabled.</td><td>P(enabled) = 0.15, P(disabled) = 0.85</td></tr>
+    <tr><td>hue_probability</td><td>Probability of hue adjustment being enabled.</td><td>P(enabled) = 0.15, P(disabled) = 0.85</td></tr>
+    <tr><td>saturation_probability</td><td>Probability of saturation adjustment being enabled.</td><td>P(enabled) = 0.15, P(disabled) = 0.85</td></tr>
 </table>
 
+#### 2.Initiate the synthetic data generation loop via `SDG_400_Looper.py`
+Once the parameter settings are configured, execute the `SDG_400_Looper.py` file to initiate the synthetic data generation loop.
 
-## **4. YOLOv5模型訓練及結果** 
+## Additional resource
+**Real Retail Product Image Dataset for validation purpose** : Consisting of 1267 images of real retail products, this dataset originated from the [UnityGroceries-Real Dataset](https://github.com/Unity-Technologies/SynthDet/blob/master/docs/UnityGroceriesReal.md). This project has corrected annotation errors and converted the data labels into YOLO format. The dataset can be downloaded from this [Google Drive link](https://drive.google.com/file/d/1RPFCBf4z7A4NkskV6Jn1MYwirZqf_qtR/view?usp=sharing)."
 
-{% include data.html %}
+## Inspiration
 
+This project is inspired by the [Unity SynthDet](https://github.com/Unity-Technologies/SynthDet/tree/master) project, with improvements in methodology (including the addition of PBR materials, HDRI lighting, and ray tracing rendering), and it has been recreated using Blender.
+
+Borkman, Steve, et al. (2021). [*Unity perception: Generate synthetic data for computer vision.* ](https://arxiv.org/abs/2107.04259)
