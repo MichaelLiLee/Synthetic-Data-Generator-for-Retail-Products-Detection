@@ -430,7 +430,7 @@ class CameraRandomizer:
         brightness_value_min = int(self.brightness_value_range["min"])
         random_brightness_value = random.randrange(brightness_value_min, brightness_value_max + 1 ,1)
         brightness_value = random.choices([random_brightness_value, default_brightness_value],brightness_happen_distribution)
-        node_BrightContrast = bpy.data.scenes['Scene'].node_tree.nodes["Bright/Contrast"]
+        node_BrightContrast = bpy.data.scenes['Scene'].node_tree.nodes["Brightness/Contrast"]
         node_BrightContrast.inputs["Bright"].default_value = brightness_value[0]
 
 
