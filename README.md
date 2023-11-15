@@ -7,17 +7,17 @@ Training convolutional neural network models requires a substantial amount of la
 
 ## Installation (Windows 10)
 
-#### Step1: Install Blender 3.6 LST
+### Step1: Install Blender 3.6 LST
 Visit the [Blender 3.6 LTS web page](https://www.blender.org/download/lts/3-6/) and click on the [Windows – Installer](https://www.blender.org/download/release/Blender3.6/blender-3.6.5-windows-x64.msi) link to initiate the download.
 
-#### Step2: Download this repo
+### Step2: Download this repo
 Download this repo via git
 ```
 git clone https://github.com/MichaelLiLee/Synthetic-Data-Generator-for-Retail-Products-Detection.git
 ```
 or download via ZIP file.
 
-#### Step3: Download assets
+### Step3: Download assets
 
 Before using the synthetic data generator to generate data, it is necessary to prepare digital assets for creating virtual scenes.These digital assets include retail product models, background and occluder 3d models, PBR materials, and lighting.
 
@@ -35,7 +35,7 @@ Once you have downloaded these digital assets, please place the assets in the co
  pbr_texture(folders contain a series of jpg images) >> Assets/pbr_texture
  HDRIs(.exr) >> Assets/hdri_lighting
 
- #### Step4: Setting paths
+ ### Step4: Setting paths
 After completing the aforementioned steps, it is necessary to set several parameters related to the path in the`SDG_200_SDGParameter.py`file:
 1. `blender_exe_path` : The path to the blender executable(default: C:/program Files/Blender Foundation/Blender 3.x/blender).
 2. `asset_background_object_folder_path` : The path to background object assets(default: Assets/background_occluder_object).
@@ -47,7 +47,7 @@ After completing the aforementioned steps, it is necessary to set several parame
 8. `output_label_path` : The path where YOLO format bounding box annotations will be saved(default: gen_data/labels).
 
 
-#### Step5: Test installation was successful - Run SDG to generate synthetic data
+### Step5: Test installation was successful - Run SDG to generate synthetic data
 After completing the paths settings, execute the `SDG_400_Looper.py` file in vscode.
 <img src="./docs/images/vscode.gif" width="1000">
 
@@ -56,7 +56,7 @@ When rendering images and generating data labels, image and label files will be 
 
 ## Usage
 
-#### 1.Setting parameters in `SDG_200_SDGParameter.py`
+### 1.Setting parameters in `SDG_200_SDGParameter.py`
 
 This python file contains a configuration class to configure this blender-based synthetic data generator pipeline, The following parameters can be adapted to your specific application.
 
@@ -113,7 +113,7 @@ This python file contains a configuration class to configure this blender-based 
     <tr><td>saturation_probability</td><td>Probability of saturation adjustment being enabled.</td><td>P(enabled) = 0.15, P(disabled) = 0.85</td></tr>
 </table>
 
-#### 2.Initiate the synthetic data generation loop via `SDG_400_Looper.py`
+### 2.Initiate the synthetic data generation loop via `SDG_400_Looper.py`
 Once the parameter settings are configured, execute the `SDG_400_Looper.py` file to initiate the synthetic data generation loop.
 
 ## Additional resource
