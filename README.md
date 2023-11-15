@@ -24,7 +24,7 @@ Before using the synthetic data generator to generate data, it is necessary to p
 In this project, the required digital assets to be prepared are as follows:
 
 1. **3D models of 63 retail products(.blend file)**, You can download from this [Google Drive Link](https://drive.google.com/file/d/1nnOdlqenK0gTdRw-_Wlto2il7JkuNLdi/view?usp=sharing).
-2. **3D Models with No Texture Serving as background and occluder (.blend file)**, You can download from this [Google Drive Link](https://drive.google.com/file/d/1ApTrFn1pGWKm97OosuGLx8gsJbc6-Dw8/view?usp=sharing).
+2. **3D Models with No Texture Serving as background and occluder (.blend file)**, You can download from this [Google Drive Link](https://drive.google.com/file/d/1TvsJQHyIfbyuGQEK5o9AFpLmMHjdhDGD/view?usp=sharing).
 3. **10 PBR materials from ambientCG**, You can download from this [Google Drive Link](https://drive.google.com/file/d/1dKtK0zv47-Ic_nzYlLgsiyHGkZLweWoQ/view?usp=sharing). You can also download more materials manually from the [AmbientCG](https://ambientcg.com/list?type=Material,Atlas,Decal) website. Alternatively, you can use this [python script](https://github.com/DLR-RM/BlenderProc/blob/main/blenderproc/scripts/download_cc_textures.py) from [BlenderProc](https://github.com/DLR-RM/BlenderProc) to download them.
 4. **10 HDRIs from PolyHaven**, You can download from this [Google Drive Link](https://drive.google.com/file/d/14Up5S2q7sx8VhN6qxADd1x80r3kTm3VY/view?usp=sharing). You can also download more HDRIs manually from the [PolyHaven](https://polyhaven.com/hdris) website. Alternatively, you can use this [python script](https://github.com/DLR-RM/BlenderProc/blob/main/blenderproc/scripts/download_haven.py) from [BlenderProc](https://github.com/DLR-RM/BlenderProc) to download them.
 
