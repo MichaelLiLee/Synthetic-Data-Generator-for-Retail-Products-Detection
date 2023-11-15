@@ -8,7 +8,7 @@ Training convolutional neural network models requires a substantial amount of la
 ## Installation (Windows 10)
 
 ### Step1: Install Blender 3.6 LST
-Visit the [Blender 3.6 LTS web page](https://www.blender.org/download/lts/3-6/) and click on the [Windows – Installer](https://www.blender.org/download/release/Blender3.6/blender-3.6.5-windows-x64.msi) link to initiate the download. Once you have downloaded, install Blender in your PC.
+Visit the [Blender 3.3 LTS web page](https://www.blender.org/download/lts/3-3/) and click on the [Windows – Installer](https://www.blender.org/download/release/Blender3.3/blender-3.3.12-windows-x64.msi) link to initiate the download. Once you have downloaded, install Blender in your PC.
 
 ### Step2: Download this repo
 Download this repo via git
@@ -40,7 +40,7 @@ Once you have downloaded these digital assets, please place the assets in the co
 
  ### Step4: Setting paths
 After completing the aforementioned steps, it is necessary to set several parameters related to the path in the`SDG_200_SDGParameter.py`file:
-1. `blender_exe_path` : The path to the blender executable(default: C:/program Files/Blender Foundation/Blender 3.x/blender).
+1. `blender_exe_path` : The path to the blender executable(default: C:/program Files/Blender Foundation/Blender 3.3/blender).
 2. `asset_background_object_folder_path` : The path to background object assets(default: Assets/background_occluder_object).
 3. `asset_foreground_object_folder_path` : The path to foreground object assets(default: Assets/foreground_object).
 4. `asset_ambientCGMaterial_folder_path` : The path to the downloaded ambientCG PBR materials(default: Assets/pbr_texture).
